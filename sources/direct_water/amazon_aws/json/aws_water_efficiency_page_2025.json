@@ -1,0 +1,636 @@
+{
+  "schema_version": "1.1.0",
+  "extraction_id": "aws-water-efficiency-page-2025",
+  "extracted_at": "2026-07-17T00:00:00Z",
+  "extractor": {
+    "name": "SWI resources maintainers",
+    "organization": "Amadeus (SWI working-group contribution)",
+    "method": "human_reviewed_automated"
+  },
+  "report": {
+    "report_id": "aws_water_efficiency_page_2025",
+    "report_title": "Amazon: AWS Data Center Water Usage",
+    "report_edition": "2025",
+    "report_year": 2025,
+    "publication_year": 2025,
+    "reporting_entity": "Amazon Web Services",
+    "source_document_type": "provider_webpage",
+    "reporting_period": {
+      "period_type": "calendar_year",
+      "period_label": "2025",
+      "start_date": "2025-01-01",
+      "end_date": "2025-12-31"
+    },
+    "source_url": "https://www.aboutamazon.com/news/sustainability/amazon-data-center-water-usage",
+    "local_archive_path": "www.aboutamazon.com_news_sustainability_amazon-data-center-water-usage.html",
+    "accessed_at": "2026-07-17",
+    "language": "en"
+  },
+  "definitions": {
+    "metric_definitions": [
+      {
+        "metric_definition_id": "md-wue",
+        "metric_name": "Water Usage Effectiveness (WUE)",
+        "metric_family": "water_intensity",
+        "quantity_kind": "intensity",
+        "definition_text": "Litres of water per kWh of IT load (AWS global data-centre footprint average).",
+        "numerator_definition": "Annual water (litres)",
+        "denominator_definition": "IT load energy (kWh)",
+        "water_accounting_flow": "withdrawal",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-dc-withdrawal",
+        "metric_name": "AWS data-centre annual water withdrawal",
+        "metric_family": "water_volume",
+        "quantity_kind": "total",
+        "definition_text": "Annual water withdrawn across AWS's global data-centre footprint.",
+        "water_accounting_flow": "withdrawal",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-water-positive-progress",
+        "metric_name": "Progress toward 2030 water-positive goal",
+        "metric_family": "water_positive_progress",
+        "quantity_kind": "percentage",
+        "definition_text": "Percent progress toward returning more water than used by 2030.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-replenishment-ratio",
+        "metric_name": "Water returned per water used",
+        "metric_family": "water_positive_progress",
+        "quantity_kind": "ratio",
+        "definition_text": "Ratio of water returned to communities to water used in the period.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-replenishment-benefit",
+        "metric_name": "Expected annual replenishment return",
+        "metric_family": "water_replenishment",
+        "quantity_kind": "total",
+        "definition_text": "Expected annual water return from announced replenishment projects.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-reclaimed-water-sites",
+        "metric_name": "Data centres using reclaimed water",
+        "metric_family": "facility_count",
+        "quantity_kind": "count",
+        "definition_text": "Number of AWS data centres using reclaimed/recycled water.",
+        "water_accounting_flow": "reuse",
+        "water_layer": "direct_operational"
+      }
+    ],
+    "scope_definitions": [
+      {
+        "scope_definition_id": "sc-aws-fleet",
+        "scope_name": "AWS global data-centre fleet",
+        "organizational_boundary": "data_centre_fleet",
+        "aggregation_level": "fleet",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled"
+        ],
+        "product_attribution": "not_attributed",
+        "service_or_product": "AWS",
+        "coverage_completeness": "complete",
+        "exclusions": [
+          "Not region- or workload-attributed; not Amazon corporate operations"
+        ]
+      },
+      {
+        "scope_definition_id": "sc-industry-benchmark",
+        "scope_name": "Data-centre industry average",
+        "organizational_boundary": "technology_benchmark",
+        "aggregation_level": "technology",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "not_applicable"
+        ],
+        "product_attribution": "not_applicable",
+        "coverage_completeness": "unknown",
+        "inclusions": [
+          "Industry-average benchmark cited by AWS"
+        ]
+      },
+      {
+        "scope_definition_id": "sc-aws-replenishment",
+        "scope_name": "AWS water-positive / replenishment program",
+        "organizational_boundary": "corporate_operations",
+        "aggregation_level": "corporate",
+        "facility_types_included": [
+          "not_applicable"
+        ],
+        "ownership_coverage": [
+          "not_applicable"
+        ],
+        "product_attribution": "not_applicable",
+        "coverage_completeness": "partial"
+      }
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "obs-aws-wue-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data-centre footprint"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "mean",
+        "value": 0.12,
+        "value_qualifier": "exact",
+        "reported_unit": "L/kWh",
+        "normalized_value": 0.12,
+        "normalized_unit": "L/kWh"
+      },
+      "denominator": {
+        "denominator_quantity": "it_load_energy",
+        "denominator_unit": "kWh",
+        "denominator_scope": "AWS data-centre IT load"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Global data-centre WUE reported by AWS."
+      },
+      "evidence": {
+        "evidence_text": "Global data center operations used just 0.12 liters of water per kilowatt-hour (L/kWh) in 2025.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Fleet average; global data-centre footprint"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-wue-2021",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2021",
+        "start_date": "2021-01-01",
+        "end_date": "2021-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data-centre footprint"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "mean",
+        "value": 0.25,
+        "value_qualifier": "exact",
+        "reported_unit": "L/kWh",
+        "normalized_value": 0.25,
+        "normalized_unit": "L/kWh"
+      },
+      "denominator": {
+        "denominator_quantity": "it_load_energy",
+        "denominator_unit": "kWh",
+        "denominator_scope": "AWS data-centre IT load"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Baseline-year WUE from AWS efficiency comparison."
+      },
+      "evidence": {
+        "evidence_text": "AWS improving from 0.25 liters per kilowatt-hour in 2021 to 0.12 in 2025.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Fleet average; baseline year"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-industry-avg-wue",
+      "record_role": "benchmark",
+      "metric_definition_id": "md-wue",
+      "scope_definition_id": "sc-industry-benchmark",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "Data-centre industry average"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "mean",
+        "value": 0.84,
+        "value_qualifier": "exact",
+        "reported_unit": "L/kWh",
+        "normalized_value": 0.84,
+        "normalized_unit": "L/kWh"
+      },
+      "denominator": {
+        "denominator_quantity": "it_load_energy",
+        "denominator_unit": "kWh",
+        "denominator_scope": "Industry IT load"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Industry-average WUE cited by AWS for comparison."
+      },
+      "evidence": {
+        "evidence_text": "Over 7x more efficient than the industry average of 0.84 L/kWh.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Industry-average benchmark cited by AWS; not AWS's own value"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-withdrawal-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-dc-withdrawal",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data-centre footprint"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value_qualifier": "approximate",
+        "reported_unit": "billion US gal",
+        "normalized_value": 9463529460.0,
+        "normalized_unit": "L",
+        "conversion_factor": 3785411784.0,
+        "conversion_source": "1 billion US gal = 3.785411784e9 L",
+        "value": 2.5
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Annual water withdrawn across the entire global data-centre footprint."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, we withdrew about 2.5 billion gallons across our entire global data center footprint.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Fleet total; not regional or workload-attributed"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-water-positive-progress-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-water-positive-progress",
+      "scope_definition_id": "sc-aws-replenishment",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS water-positive program"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 75.0,
+        "value_qualifier": "approximate",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Progress toward the 2030 water-positive goal."
+      },
+      "evidence": {
+        "evidence_text": "We're about 75% of the way to our goal of being water positive by 2030.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Progress metric; not an operational water volume"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-replenishment-ratio-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-replenishment-ratio",
+      "scope_definition_id": "sc-aws-replenishment",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS water-positive program"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "ratio",
+        "value": 0.75,
+        "value_qualifier": "exact",
+        "reported_unit": "gallon returned per gallon used"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Ratio of water returned to communities versus water used."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, we returned 3 gallons for every 4 we used.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Return-to-use ratio; a replenishment/offset metric, not operational water"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-replenishment-projects-annual",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-replenishment-benefit",
+      "scope_definition_id": "sc-aws-replenishment",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS water-positive program (50+ projects)"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_qualifier": "greater_than",
+        "reported_unit": "billion US gal",
+        "normalized_value_low": 21955388347.2,
+        "normalized_unit": "L",
+        "conversion_factor": 3785411784.0,
+        "conversion_source": "1 billion US gal = 3.785411784e9 L",
+        "value_low": 5.8
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Expected annual return from 50+ announced replenishment projects."
+      },
+      "evidence": {
+        "evidence_text": "Over 50 water projects expected to return more than 5.8 billion gallons of water annually for local communities.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Expected annual return; replenishment, not operational water"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-reclaimed-water-sites",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-reclaimed-water-sites",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data-centre footprint"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 130,
+        "value_qualifier": "exact",
+        "reported_unit": "data centers"
+      },
+      "water_boundary": {
+        "accounting_flow": "reuse",
+        "water_layer": "direct_operational",
+        "freshwater_status": "includes_non_freshwater",
+        "end_uses": [
+          "cooling"
+        ],
+        "water_source_categories": [
+          "reclaimed_water",
+          "recycled_water"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Count of AWS data centres using reclaimed/recycled water."
+      },
+      "evidence": {
+        "evidence_text": "130 data centers using reclaimed water.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Site count, not a water volume"
+        ]
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "relationship_id": "rel-aws-wue-trend",
+      "subject_observation_id": "obs-aws-wue-2025",
+      "relationship_type": "same_concept_as",
+      "object_observation_ids": [
+        "obs-aws-wue-2021"
+      ],
+      "note": "Same WUE metric and scope across years (2021 baseline to 2025)."
+    }
+  ],
+  "extraction_notes": "AWS water-efficiency page: WUE (0.12 L/kWh 2025, 0.25 in 2021) vs industry average (0.84), 2025 data-centre withdrawal (~2.5 billion US gal), water-positive progress (75%), return-to-use ratio (3 of 4), 50+ replenishment projects (>5.8 billion US gal/yr), and 130 data centres using reclaimed water. WUE reported as a global fleet withdrawal-based intensity; terminology for withdrawal vs consumption varies in AWS communications."
+}

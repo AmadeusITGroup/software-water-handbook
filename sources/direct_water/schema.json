@@ -1,0 +1,1168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "software-water-impact-resources/sources/direct_water/schema.json",
+  "title": "Direct-Water Report Extraction and Comparability Schema",
+  "description": "Schema for extracting one report or source edition into atomic water observations, preserving definitions and boundaries, and recording whether observations can be merged across years or compared across companies. Unit conversion alone never establishes comparability.",
+  "$comment": "Workflow: (1) create one document per report edition; (2) define each metric and scope once; (3) extract one accounting flow, period, geography, and scope per observation; (4) relate components, subsets, and derived values explicitly; (5) assess every required compatibility dimension before merging or comparing. AWARE impact results and Aqueduct risk scores are different constructs and must not be merged.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "extraction_id",
+    "extracted_at",
+    "report",
+    "definitions",
+    "observations"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.1.0",
+      "description": "Version of this extraction schema."
+    },
+    "extraction_id": {
+      "$ref": "#/$defs/nonEmptyString",
+      "description": "Stable identifier for this extraction package, independent of row order."
+    },
+    "extracted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "extractor": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": ["string", "null"]},
+        "organization": {"type": ["string", "null"]},
+        "method": {
+          "type": "string",
+          "enum": ["manual", "automated", "human_reviewed_automated", "unknown"]
+        },
+        "software_version": {"type": ["string", "null"]}
+      },
+      "required": ["method"]
+    },
+    "report": {"$ref": "#/$defs/report"},
+    "definitions": {"$ref": "#/$defs/definitionsCatalog"},
+    "observations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/observation"},
+      "minItems": 1
+    },
+    "relationships": {
+      "type": "array",
+      "description": "Links that prevent double counting and preserve derivation, subset, component, and supersession logic.",
+      "items": {"$ref": "#/$defs/relationship"},
+      "default": []
+    },
+    "compatibility_assessments": {
+      "type": "array",
+      "description": "Optional pairwise decisions added after another report or observation is available. Longitudinal assessments decide mergeability; cross-company assessments decide comparability.",
+      "items": {"$ref": "#/$defs/compatibilityAssessment"},
+      "default": []
+    },
+    "extraction_notes": {
+      "type": ["string", "null"],
+      "description": "Package-level notes that cannot be represented in structured fields."
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nullableNonEmptyString": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/nonEmptyString"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "nullReason": {
+      "type": "string",
+      "enum": [
+        "not_reported",
+        "not_applicable",
+        "not_disaggregated",
+        "unknown",
+        "not_reviewed",
+        "suppressed",
+        "below_reporting_threshold",
+        "not_collected",
+        "source_definition_unclear"
+      ]
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "report_id",
+        "report_title",
+        "reporting_entity",
+        "report_year",
+        "publication_year",
+        "source_document_type",
+        "reporting_period",
+        "source_url",
+        "accessed_at"
+      ],
+      "properties": {
+        "report_id": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Stable identifier for this exact report, webpage edition, paper, or dataset version."
+        },
+        "report_title": {"$ref": "#/$defs/nonEmptyString"},
+        "report_edition": {
+          "type": ["string", "null"],
+          "description": "Edition label printed by the publisher, such as FY25 or 2026 Environmental Report."
+        },
+        "report_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200,
+          "description": "Calendar year identifying the report edition. This is not the year of every observation."
+        },
+        "publication_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Exact public release date when known."
+        },
+        "publication_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200,
+          "description": "Calendar year in which the source was published. Never store FY labels here."
+        },
+        "publisher": {
+          "type": ["string", "null"],
+          "description": "Publishing organization when different from or more specific than the reporting entity."
+        },
+        "reporting_entity": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Organization whose activities are reported, such as Microsoft, Google, or Amazon Web Services."
+        },
+        "source_document_type": {
+          "type": "string",
+          "enum": [
+            "corporate_report",
+            "environmental_data_factsheet",
+            "provider_webpage",
+            "provider_blog",
+            "provider_explainer",
+            "technical_paper",
+            "research_paper",
+            "research_dataset",
+            "methodology_document",
+            "assurance_statement",
+            "other"
+          ]
+        },
+        "reporting_period": {"$ref": "#/$defs/period"},
+        "source_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "local_archive_path": {"type": ["string", "null"]},
+        "content_hash_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "accessed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+          "default": "en"
+        },
+        "provenance_record_id": {"type": ["string", "null"]},
+        "supersedes_report_id": {"type": ["string", "null"]},
+        "restatement": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "contains_restatements": {"type": "boolean"},
+            "affected_periods": {"$ref": "#/$defs/stringArray"},
+            "reason": {"type": ["string", "null"]},
+            "method_change": {"type": "boolean"},
+            "organizational_boundary_change": {"type": "boolean"}
+          },
+          "required": [
+            "contains_restatements",
+            "affected_periods",
+            "method_change",
+            "organizational_boundary_change"
+          ]
+        }
+      }
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["period_type", "period_label", "start_date", "end_date"],
+      "properties": {
+        "period_type": {
+          "type": "string",
+          "enum": [
+            "calendar_year",
+            "fiscal_year",
+            "date_range",
+            "point_in_time",
+            "study_period",
+            "rolling_period",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "period_label": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Publisher-facing label, such as FY25, 2025, or Study scenario."
+        },
+        "start_date": {"type": ["string", "null"], "format": "date"},
+        "end_date": {"type": ["string", "null"], "format": "date"},
+        "full_period_coverage": {"type": ["boolean", "null"]},
+        "null_reason": {"anyOf": [{"$ref": "#/$defs/nullReason"}, {"type": "null"}]}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "period_type": {
+                "enum": ["calendar_year", "fiscal_year", "date_range", "point_in_time", "rolling_period"]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "start_date": {"type": "string", "format": "date"},
+              "end_date": {"type": "string", "format": "date"}
+            }
+          }
+        }
+      ]
+    },
+    "definitionsCatalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric_definitions", "scope_definitions"],
+      "properties": {
+        "metric_definitions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/metricDefinition"},
+          "minItems": 1
+        },
+        "scope_definitions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/scopeDefinition"},
+          "minItems": 1
+        },
+        "framework_definitions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/frameworkDefinition"},
+          "default": []
+        }
+      }
+    },
+    "metricDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metric_definition_id",
+        "metric_name",
+        "metric_family",
+        "quantity_kind",
+        "definition_text",
+        "water_accounting_flow",
+        "water_layer"
+      ],
+      "properties": {
+        "metric_definition_id": {"$ref": "#/$defs/nonEmptyString"},
+        "metric_name": {"$ref": "#/$defs/nonEmptyString"},
+        "metric_family": {
+          "type": "string",
+          "enum": [
+            "water_volume",
+            "water_intensity",
+            "water_share",
+            "water_balance",
+            "water_risk_exposure",
+            "water_replenishment",
+            "water_positive_progress",
+            "avoided_water",
+            "facility_count",
+            "methodology",
+            "coverage_metadata",
+            "other"
+          ]
+        },
+        "quantity_kind": {
+          "type": "string",
+          "enum": ["total", "intensity", "percentage", "ratio", "count", "range", "method_only", "metadata"]
+        },
+        "definition_text": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Exact or faithful source definition. Definition changes require a new metric_definition_id."
+        },
+        "numerator_definition": {"type": ["string", "null"]},
+        "denominator_definition": {"type": ["string", "null"]},
+        "water_accounting_flow": {"$ref": "#/$defs/waterAccountingFlow"},
+        "water_layer": {"$ref": "#/$defs/waterLayer"},
+        "freshwater_only": {"type": ["boolean", "null"]},
+        "standard_references": {"$ref": "#/$defs/stringArray"},
+        "valid_from": {"type": ["string", "null"], "format": "date"},
+        "valid_to": {"type": ["string", "null"], "format": "date"},
+        "definition_change_note": {"type": ["string", "null"]}
+      }
+    },
+    "scopeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope_definition_id",
+        "scope_name",
+        "organizational_boundary",
+        "aggregation_level",
+        "facility_types_included",
+        "ownership_coverage",
+        "product_attribution",
+        "coverage_completeness"
+      ],
+      "properties": {
+        "scope_definition_id": {"$ref": "#/$defs/nonEmptyString"},
+        "scope_name": {"$ref": "#/$defs/nonEmptyString"},
+        "organizational_boundary": {
+          "type": "string",
+          "enum": [
+            "corporate_operations",
+            "business_unit",
+            "cloud_service_fleet",
+            "data_centre_fleet",
+            "facility",
+            "customer_deployment",
+            "product_or_service",
+            "workload",
+            "research_scenario",
+            "technology_benchmark",
+            "other",
+            "unknown"
+          ]
+        },
+        "aggregation_level": {
+          "type": "string",
+          "enum": [
+            "corporate",
+            "fleet",
+            "region",
+            "watershed",
+            "country",
+            "site",
+            "customer",
+            "product",
+            "workload",
+            "prompt",
+            "technology",
+            "other"
+          ]
+        },
+        "facility_types_included": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "data_centre",
+              "office",
+              "retail",
+              "campus",
+              "laboratory",
+              "manufacturing",
+              "warehouse",
+              "other_facility",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "ownership_coverage": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "owned",
+              "operationally_controlled",
+              "leased",
+              "fully_leased",
+              "shared",
+              "third_party_operated",
+              "supplier_operated",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "product_attribution": {
+          "type": "string",
+          "enum": [
+            "directly_attributed",
+            "allocated",
+            "allocation_approximation",
+            "multi_product",
+            "corporate_only",
+            "not_attributed",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "service_or_product": {"type": ["string", "null"]},
+        "coverage_completeness": {
+          "type": "string",
+          "enum": ["complete", "partial", "lower_bound", "sample", "unknown"]
+        },
+        "coverage_percent": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "inclusions": {"$ref": "#/$defs/stringArray"},
+        "exclusions": {"$ref": "#/$defs/stringArray"},
+        "scope_change_note": {"type": ["string", "null"]}
+      }
+    },
+    "frameworkDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["framework_definition_id", "framework_class", "name"],
+      "properties": {
+        "framework_definition_id": {"$ref": "#/$defs/nonEmptyString"},
+        "framework_class": {
+          "type": "string",
+          "enum": [
+            "accounting_standard",
+            "metric_standard",
+            "risk_tool",
+            "impact_framework",
+            "replenishment_framework",
+            "assurance_standard",
+            "allocation_method"
+          ]
+        },
+        "name": {"$ref": "#/$defs/nonEmptyString"},
+        "version": {"type": ["string", "null"]},
+        "indicator": {"type": ["string", "null"]},
+        "scenario": {"type": ["string", "null"]},
+        "horizon_year": {"type": ["integer", "null"], "minimum": 1900, "maximum": 2200},
+        "category_scheme": {"type": ["string", "null"]},
+        "characterization_unit": {"type": ["string", "null"]},
+        "definition_text": {"type": ["string", "null"]},
+        "source_url": {"type": ["string", "null"], "format": "uri"},
+        "local_adjustment_applied": {"type": ["boolean", "null"]},
+        "local_adjustment_method": {"type": ["string", "null"]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"framework_class": {"const": "risk_tool"}}},
+          "then": {"required": ["indicator"]}
+        },
+        {
+          "if": {"properties": {"framework_class": {"const": "impact_framework"}}},
+          "then": {"required": ["characterization_unit"]}
+        }
+      ]
+    },
+    "waterAccountingFlow": {
+      "type": "string",
+      "$comment": "Use provider_reported_water_use when a source reports 'water use'/'water' without stating whether it is withdrawal or consumption. This is distinct from 'unknown', which means the flow could not be determined at all.",
+      "enum": [
+        "withdrawal",
+        "consumption",
+        "discharge",
+        "reuse",
+        "replenishment",
+        "avoided_use",
+        "provider_reported_water_use",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "waterLayer": {
+      "type": "string",
+      "enum": [
+        "direct_operational",
+        "indirect_electricity",
+        "embodied",
+        "combined_direct_indirect",
+        "impact_characterized",
+        "context_only",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observation_id",
+        "record_role",
+        "metric_definition_id",
+        "scope_definition_id",
+        "period",
+        "geography",
+        "value",
+        "water_boundary",
+        "measurement",
+        "evidence",
+        "quality"
+      ],
+      "properties": {
+        "observation_id": {"$ref": "#/$defs/nonEmptyString"},
+        "record_role": {
+          "type": "string",
+          "enum": [
+            "reported_observation",
+            "derived_observation",
+            "benchmark",
+            "scenario",
+            "methodology",
+            "metadata",
+            "context"
+          ]
+        },
+        "metric_definition_id": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Must match a definitions.metric_definitions entry."
+        },
+        "scope_definition_id": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Must match a definitions.scope_definitions entry."
+        },
+        "period": {"$ref": "#/$defs/period"},
+        "geography": {"$ref": "#/$defs/geography"},
+        "value": {"$ref": "#/$defs/valuePackage"},
+        "denominator": {
+          "anyOf": [{"$ref": "#/$defs/denominator"}, {"type": "null"}]
+        },
+        "water_boundary": {"$ref": "#/$defs/waterBoundary"},
+        "lifecycle_phase": {
+          "type": "string",
+          "enum": ["operations", "construction", "commissioning", "decommissioning", "mixed", "unknown", "not_applicable"],
+          "default": "operations"
+        },
+        "measurement": {"$ref": "#/$defs/measurement"},
+        "framework_definition_ids": {"$ref": "#/$defs/stringArray"},
+        "risk_context": {
+          "anyOf": [{"$ref": "#/$defs/riskContext"}, {"type": "null"}]
+        },
+        "impact_characterization": {
+          "anyOf": [{"$ref": "#/$defs/impactCharacterization"}, {"type": "null"}]
+        },
+        "replenishment_progress": {
+          "anyOf": [{"$ref": "#/$defs/replenishmentProgress"}, {"type": "null"}]
+        },
+        "allocation": {
+          "anyOf": [{"$ref": "#/$defs/allocation"}, {"type": "null"}]
+        },
+        "evidence": {"$ref": "#/$defs/evidence"},
+        "quality": {"$ref": "#/$defs/quality"},
+        "eligibility": {"$ref": "#/$defs/eligibility"},
+        "null_reasons": {
+          "type": "object",
+          "description": "Field-level reasons for absent values. Keys are JSON property paths and values use the controlled null-reason vocabulary.",
+          "additionalProperties": {"$ref": "#/$defs/nullReason"},
+          "default": {}
+        },
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "geography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["geographic_resolution", "geography_name"],
+      "properties": {
+        "geographic_resolution": {
+          "type": "string",
+          "enum": [
+            "global",
+            "multi_region",
+            "region",
+            "country",
+            "subdivision",
+            "city",
+            "site",
+            "watershed",
+            "grid_region",
+            "scenario",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "geography_name": {"$ref": "#/$defs/nonEmptyString"},
+        "country_code": {"type": ["string", "null"], "pattern": "^[A-Z]{2}$"},
+        "subdivision_code": {"type": ["string", "null"]},
+        "site_name": {"type": ["string", "null"]},
+        "watershed_id": {"type": ["string", "null"]},
+        "latitude": {"type": ["number", "null"], "minimum": -90, "maximum": 90},
+        "longitude": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
+        "location_method": {
+          "type": "string",
+          "enum": ["reported", "geocoded", "mapped", "modelled", "not_applicable", "unknown"]
+        }
+      }
+    },
+    "valuePackage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value_status", "statistic_type", "reported_unit"],
+      "properties": {
+        "value_status": {
+          "type": "string",
+          "enum": [
+            "reported",
+            "bounded",
+            "not_reported",
+            "not_applicable",
+            "unknown",
+            "not_reviewed",
+            "suppressed",
+            "below_reporting_threshold",
+            "method_only"
+          ]
+        },
+        "statistic_type": {
+          "type": "string",
+          "enum": ["total", "mean", "median", "minimum", "maximum", "range", "share", "ratio", "estimate", "not_applicable"]
+        },
+        "value": {"type": ["number", "null"]},
+        "value_low": {"type": ["number", "null"]},
+        "value_high": {"type": ["number", "null"]},
+        "lower_bound_inclusive": {"type": ["boolean", "null"]},
+        "upper_bound_inclusive": {"type": ["boolean", "null"]},
+        "value_qualifier": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "approximate",
+            "rounded",
+            "less_than",
+            "less_than_or_equal",
+            "greater_than",
+            "greater_than_or_equal",
+            "range",
+            "none"
+          ]
+        },
+        "reported_unit": {
+          "type": ["string", "null"],
+          "description": "Unit exactly as reported. Methodology is not a unit."
+        },
+        "reported_precision": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "rounding_rule": {"type": ["string", "null"]},
+        "normalized_value": {"type": ["number", "null"]},
+        "normalized_value_low": {"type": ["number", "null"]},
+        "normalized_value_high": {"type": ["number", "null"]},
+        "normalized_unit": {"type": ["string", "null"]},
+        "conversion_factor": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "conversion_source": {"type": ["string", "null"]},
+        "missing_reason": {"anyOf": [{"$ref": "#/$defs/nullReason"}, {"type": "null"}]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"value_status": {"const": "reported"}}},
+          "then": {
+            "required": ["value", "value_qualifier"],
+            "properties": {"value": {"type": "number"}, "reported_unit": {"type": "string", "minLength": 1}}
+          }
+        },
+        {
+          "if": {"properties": {"value_status": {"const": "bounded"}}},
+          "then": {
+            "required": ["value_qualifier"],
+            "anyOf": [
+              {"required": ["value_low"], "properties": {"value_low": {"type": "number"}}},
+              {"required": ["value_high"], "properties": {"value_high": {"type": "number"}}}
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value_status": {
+                "enum": ["not_reported", "not_applicable", "unknown", "not_reviewed", "suppressed", "below_reporting_threshold"]
+              }
+            }
+          },
+          "then": {"required": ["missing_reason"]}
+        }
+      ]
+    },
+    "denominator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["denominator_quantity", "denominator_unit", "denominator_scope"],
+      "properties": {
+        "denominator_quantity": {
+          "type": "string",
+          "enum": [
+            "it_equipment_energy",
+            "it_load_energy",
+            "server_energy",
+            "facility_energy",
+            "allocated_customer_energy",
+            "prompt",
+            "response",
+            "withdrawal",
+            "consumption",
+            "freshwater_consumption",
+            "net_withdrawal",
+            "facility_count",
+            "other"
+          ]
+        },
+        "denominator_value": {"type": ["number", "null"]},
+        "denominator_value_low": {"type": ["number", "null"]},
+        "denominator_value_high": {"type": ["number", "null"]},
+        "denominator_unit": {"$ref": "#/$defs/nonEmptyString"},
+        "denominator_scope": {"$ref": "#/$defs/nonEmptyString"},
+        "denominator_observation_id": {"type": ["string", "null"]},
+        "compatibility_requirements": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "waterBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["accounting_flow", "water_layer", "freshwater_status", "end_uses"],
+      "properties": {
+        "accounting_flow": {"$ref": "#/$defs/waterAccountingFlow"},
+        "water_layer": {"$ref": "#/$defs/waterLayer"},
+        "freshwater_status": {
+          "type": "string",
+          "enum": ["freshwater_only", "includes_non_freshwater", "excludes_seawater", "all_water", "not_applicable", "unknown"]
+        },
+        "end_uses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "cooling",
+              "humidification",
+              "sanitation",
+              "landscaping",
+              "food_service",
+              "process_water",
+              "construction",
+              "mixed_operations",
+              "other",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Humidification and cooling are end uses, not withdrawal/consumption classifications."
+        },
+        "water_source_categories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "third_party_water",
+              "municipal_water",
+              "surface_water",
+              "groundwater",
+              "seawater",
+              "rainwater",
+              "recycled_water",
+              "reclaimed_water",
+              "other",
+              "mixed",
+              "unknown"
+            ]
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "potability": {
+          "type": "string",
+          "enum": ["potable", "nonpotable", "mixed", "not_applicable", "unknown"]
+        },
+        "cooling_technology": {
+          "type": "string",
+          "enum": ["evaporative", "adiabatic", "closed_loop", "dry", "hybrid", "mixed", "other", "not_applicable", "unknown"]
+        },
+        "cooling_process": {
+          "type": "string",
+          "enum": ["evaporation", "blowdown", "heat_rejection", "mixed", "other", "not_applicable", "unknown"]
+        },
+        "unknown_flow_reason": {
+          "type": ["string", "null"],
+          "enum": ["source_not_specific", "conflicting_sources", "review_pending", "definition_unclear", null]
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"accounting_flow": {"const": "unknown"}}},
+          "then": {
+            "required": ["unknown_flow_reason"],
+            "properties": {"unknown_flow_reason": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method_types", "method_description"],
+      "properties": {
+        "method_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "metered",
+              "utility_bill",
+              "supplier_data",
+              "engineering_estimate",
+              "modelled",
+              "calculated_balance",
+              "allocated",
+              "transcribed",
+              "mixed",
+              "unknown"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "method_description": {"$ref": "#/$defs/nonEmptyString"},
+        "estimated_fraction_percent": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "uncertainty_type": {
+          "type": "string",
+          "enum": ["measurement", "estimation", "rounding", "model", "allocation", "mixed", "not_reported", "not_applicable"]
+        },
+        "methodology_changed_from_prior_report": {"type": ["boolean", "null"]},
+        "method_change_description": {"type": ["string", "null"]}
+      }
+    },
+    "riskContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["risk_framework_definition_id", "risk_indicator", "risk_category"],
+      "properties": {
+        "risk_framework_definition_id": {"$ref": "#/$defs/nonEmptyString"},
+        "risk_indicator": {
+          "type": "string",
+          "$comment": "Aqueduct 4.0 baseline indicators. baseline_water_stress=bws, water_depletion=bwd, drought_risk=drr, seasonal_variability=sev, interannual_variability=iav, groundwater_table_decline=gtd.",
+          "enum": [
+            "baseline_water_stress",
+            "source_water_stress",
+            "water_depletion",
+            "water_scarcity",
+            "drought_risk",
+            "seasonal_variability",
+            "interannual_variability",
+            "groundwater_table_decline",
+            "composite_water_risk",
+            "other"
+          ]
+        },
+        "risk_category": {"$ref": "#/$defs/nonEmptyString"},
+        "risk_score": {"type": ["number", "null"]},
+        "risk_threshold": {"type": ["string", "null"]},
+        "risk_share_denominator": {"type": ["string", "null"]},
+        "local_context_adjustment": {"type": ["string", "null"]}
+      }
+    },
+    "impactCharacterization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["impact_framework_definition_id", "inventory_flow", "characterization_factor", "characterization_factor_unit", "impact_unit"],
+      "properties": {
+        "impact_framework_definition_id": {"$ref": "#/$defs/nonEmptyString"},
+        "inventory_flow": {
+          "type": "string",
+          "enum": ["consumption", "withdrawal", "discharge", "other"]
+        },
+        "characterization_factor": {"type": "number", "minimum": 0},
+        "characterization_factor_unit": {"$ref": "#/$defs/nonEmptyString"},
+        "impact_value": {"type": ["number", "null"]},
+        "impact_unit": {"$ref": "#/$defs/nonEmptyString"},
+        "spatial_match_method": {"type": ["string", "null"]},
+        "temporal_match_method": {"type": ["string", "null"]}
+      }
+    },
+    "replenishmentProgress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["framework_definition_id", "numerator_definition", "denominator_definition"],
+      "properties": {
+        "framework_definition_id": {"$ref": "#/$defs/nonEmptyString"},
+        "numerator_definition": {"$ref": "#/$defs/nonEmptyString"},
+        "denominator_definition": {"$ref": "#/$defs/nonEmptyString"},
+        "eligible_reuse_included": {"type": ["boolean", "null"]},
+        "sustainable_sources_excluded": {"type": ["boolean", "null"]},
+        "target_scope": {"type": ["string", "null"]}
+      }
+    },
+    "allocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allocation_status", "allocation_target"],
+      "properties": {
+        "allocation_status": {
+          "type": "string",
+          "enum": ["reported", "derived", "approximate", "unavailable", "not_applicable", "unknown"]
+        },
+        "allocation_target": {"$ref": "#/$defs/nonEmptyString"},
+        "allocation_basis": {"type": ["string", "null"]},
+        "allocation_formula": {"type": ["string", "null"]},
+        "allocation_input_observation_ids": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_text", "citation"],
+      "properties": {
+        "evidence_text": {"$ref": "#/$defs/nonEmptyString"},
+        "citation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "page": {"type": ["string", "null"]},
+            "table": {"type": ["string", "null"]},
+            "section": {"type": ["string", "null"]},
+            "figure": {"type": ["string", "null"]},
+            "footnote": {"type": ["string", "null"]},
+            "web_anchor": {"type": ["string", "null"]}
+          }
+        },
+        "extraction_method": {"type": ["string", "null"]},
+        "review_status": {
+          "type": "string",
+          "enum": ["primary_source_validated", "validated_with_caveats", "pending_primary_review", "secondary_source_only", "rejected"]
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_authority", "assurance", "validation_flags"],
+      "properties": {
+        "source_authority": {
+          "type": "string",
+          "enum": ["primary_official", "primary_research", "secondary", "unknown"]
+        },
+        "assurance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["reasonable_assurance", "limited_assurance", "not_assured", "not_reviewed", "unknown"]
+            },
+            "provider": {"type": ["string", "null"]},
+            "standard": {"type": ["string", "null"]},
+            "scope": {"type": ["string", "null"]},
+            "assurance_statement_report_id": {"type": ["string", "null"]}
+          }
+        },
+        "validation_flags": {"$ref": "#/$defs/stringArray"},
+        "caveats": {"$ref": "#/$defs/stringArray"},
+        "reconciliation_status": {
+          "type": "string",
+          "enum": ["pass", "pass_with_rounding", "fail", "not_tested", "not_applicable"]
+        },
+        "reconciliation_tolerance": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calculation_status", "comparison_status", "ranking_eligible"],
+      "properties": {
+        "calculation_status": {
+          "type": "string",
+          "enum": ["eligible", "conditional", "not_eligible", "not_assessed"]
+        },
+        "calculation_exclusion_reasons": {"$ref": "#/$defs/stringArray"},
+        "comparison_status": {
+          "type": "string",
+          "enum": ["eligible", "conditional", "not_eligible", "not_assessed"]
+        },
+        "comparison_exclusion_reasons": {"$ref": "#/$defs/stringArray"},
+        "ranking_eligible": {"type": "boolean"},
+        "required_matching_dimensions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/comparisonDimensionName"},
+          "uniqueItems": true,
+          "default": []
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relationship_id", "subject_observation_id", "relationship_type", "object_observation_ids"],
+      "properties": {
+        "relationship_id": {"$ref": "#/$defs/nonEmptyString"},
+        "subject_observation_id": {"$ref": "#/$defs/nonEmptyString"},
+        "relationship_type": {
+          "type": "string",
+          "enum": [
+            "component_of",
+            "subset_of",
+            "rollup_of",
+            "percentage_of",
+            "derived_from",
+            "reconciles_with",
+            "supersedes",
+            "restates",
+            "same_concept_as"
+          ]
+        },
+        "object_observation_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "derivation_formula": {"type": ["string", "null"]},
+        "note": {"type": ["string", "null"]}
+      }
+    },
+    "comparisonDimensionName": {
+      "type": "string",
+      "enum": [
+        "metric_definition",
+        "water_accounting_flow",
+        "water_layer",
+        "freshwater_boundary",
+        "end_use",
+        "lifecycle_phase",
+        "reporting_period",
+        "geography",
+        "organizational_boundary",
+        "aggregation_level",
+        "facility_coverage",
+        "ownership_coverage",
+        "coverage_completeness",
+        "product_attribution",
+        "denominator_quantity",
+        "denominator_scope",
+        "measurement_method",
+        "accounting_standard",
+        "risk_tool",
+        "risk_indicator",
+        "risk_scenario",
+        "impact_framework",
+        "replenishment_formula",
+        "assurance_scope",
+        "value_qualifier",
+        "precision",
+        "unit"
+      ]
+    },
+    "dimensionAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimension", "status", "blocking", "rationale"],
+      "properties": {
+        "dimension": {"$ref": "#/$defs/comparisonDimensionName"},
+        "status": {
+          "type": "string",
+          "enum": ["exact_match", "compatible", "harmonizable", "mismatch", "unknown", "not_applicable"]
+        },
+        "blocking": {
+          "type": "boolean",
+          "description": "True when this dimension prevents the proposed merge or comparison."
+        },
+        "left_value": {"type": ["string", "number", "boolean", "null"]},
+        "right_value": {"type": ["string", "number", "boolean", "null"]},
+        "harmonization_action": {"type": ["string", "null"]},
+        "rationale": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "compatibilityAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assessment_id",
+        "assessment_type",
+        "left_reference",
+        "right_reference",
+        "assessed_at",
+        "dimensions",
+        "conclusion"
+      ],
+      "properties": {
+        "assessment_id": {"$ref": "#/$defs/nonEmptyString"},
+        "assessment_type": {
+          "type": "string",
+          "enum": ["longitudinal_same_company", "cross_company"]
+        },
+        "left_reference": {"$ref": "#/$defs/comparisonReference"},
+        "right_reference": {"$ref": "#/$defs/comparisonReference"},
+        "assessed_at": {"type": "string", "format": "date-time"},
+        "dimensions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/dimensionAssessment"},
+          "minItems": 1
+        },
+        "merge_decision": {
+          "type": "string",
+          "enum": ["merge", "merge_after_harmonization", "keep_separate", "insufficient_information"]
+        },
+        "comparison_grade": {
+          "oneOf": [
+            {"const": "A", "description": "Directly comparable: all material dimensions match."},
+            {"const": "B", "description": "Comparable with minor, disclosed caveats."},
+            {"const": "C", "description": "Contextual comparison only; material scope differences remain."},
+            {"const": "D", "description": "Methodology comparison only; numerical results are not comparable."},
+            {"const": "X", "description": "Not comparable or comparison would be misleading."}
+          ]
+        },
+        "comparison_decision": {
+          "type": "string",
+          "enum": ["direct_comparison", "comparison_with_caveats", "context_only", "methodology_only", "not_comparable", "insufficient_information"]
+        },
+        "harmonization_steps": {"$ref": "#/$defs/stringArray"},
+        "blocking_dimensions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/comparisonDimensionName"},
+          "uniqueItems": true,
+          "default": []
+        },
+        "conclusion": {"$ref": "#/$defs/nonEmptyString"},
+        "reviewer": {"type": ["string", "null"]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"assessment_type": {"const": "longitudinal_same_company"}}},
+          "then": {"required": ["merge_decision"]}
+        },
+        {
+          "if": {"properties": {"assessment_type": {"const": "cross_company"}}},
+          "then": {"required": ["comparison_grade", "comparison_decision"]}
+        }
+      ]
+    },
+    "comparisonReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["extraction_id", "report_id", "observation_ids"],
+      "properties": {
+        "extraction_id": {"$ref": "#/$defs/nonEmptyString"},
+        "report_id": {"$ref": "#/$defs/nonEmptyString"},
+        "observation_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

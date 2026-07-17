@@ -1,0 +1,138 @@
+{
+  "name": "direct-water-swi-parameters",
+  "title": "Direct-Water SWI Parameter Tables (cross-provider)",
+  "description": "Computation-ready parameter tables derived from the JSON extractions under each <company>/json/. Tables are themed by metric family. This is the canonical data dictionary: the combined cross_provider/*_all_providers.csv tables and the per-company <company>/csv/*.csv tables share these field schemas. Every row carries units, the consumption/withdrawal flag, a caveat, and a source_report_id back-reference to the authoritative JSON. Derived artifacts only — never hand-edit; regenerate with derive_parameters.py.",
+  "profile": "tabular-data-package",
+  "licenses": [
+    {"name": "CC-BY-4.0", "title": "Creative Commons Attribution 4.0 (pending Amadeus approval)"}
+  ],
+  "sources": [
+    {"title": "JSON extractions (source of truth)", "path": "../"}
+  ],
+  "resources": [
+    {
+      "name": "wue",
+      "path": "wue_all_providers.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Water Usage Effectiveness (intensity). Use D = workload_IT_kWh x wue_l_per_kwh. Per-company copy: <company>/csv/wue.csv.",
+      "schema": {
+        "fields": [
+          {"name": "provider", "type": "string", "description": "Reporting entity; not always specific to a cloud service (e.g. Azure/GCP)."},
+          {"name": "service_applicability", "type": "string", "description": "Scope the value applies to; a fleet/corporate value is not automatically a service/workload value."},
+          {"name": "region", "type": "string", "description": "Geographic scope; not a physical site unless stated."},
+          {"name": "period", "type": "string", "description": "Reporting period label (calendar or fiscal year)."},
+          {"name": "wue_l_per_kwh", "type": "number", "unit": "L/kWh", "description": "Water Usage Effectiveness value."},
+          {"name": "value_qualifier", "type": "string", "description": "exact, approximate, bound, etc."},
+          {"name": "water_flow", "type": "string", "constraints": {"enum": ["withdrawal", "consumption", "provider_reported_water_use"]}, "description": "Flow of the WUE numerator. Consumption-based impact frameworks (e.g. AWARE) should not be applied to a withdrawal-based WUE without adjustment. Impact weighting is out of scope for this layer."},
+          {"name": "denominator", "type": "string", "description": "Energy denominator (typically IT-equipment energy)."},
+          {"name": "caveat", "type": "string", "description": "Applicability caveat from the source extraction."},
+          {"name": "source_report_id", "type": "string", "description": "Back-reference to <company>/json/<source_report_id>.json."},
+          {"name": "source_url", "type": "string", "format": "uri", "description": "Official primary-source URL."}
+        ],
+        "primaryKey": ["provider", "service_applicability", "region", "period", "water_flow"]
+      }
+    },
+    {
+      "name": "per_unit_water",
+      "path": "per_unit_water_all_providers.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Water intensities with a NON-energy denominator (e.g. per AI prompt or per response). Distinct from wue (which is per kWh). value_liters is the per-unit water normalized to litres. Per-company copy: <company>/csv/per_unit_water.csv.",
+      "schema": {
+        "fields": [
+          {"name": "provider", "type": "string"},
+          {"name": "service_applicability", "type": "string"},
+          {"name": "region", "type": "string"},
+          {"name": "period", "type": "string"},
+          {"name": "value", "type": "number", "description": "Value as reported (in reported_unit)."},
+          {"name": "reported_unit", "type": "string", "description": "e.g. mL/prompt."},
+          {"name": "value_liters", "type": "number", "unit": "L", "description": "Per-unit water normalized to litres."},
+          {"name": "denominator", "type": "string", "description": "The non-energy unit (e.g. prompt, response)."},
+          {"name": "value_qualifier", "type": "string"},
+          {"name": "water_flow", "type": "string"},
+          {"name": "caveat", "type": "string"},
+          {"name": "source_report_id", "type": "string"},
+          {"name": "source_url", "type": "string", "format": "uri"}
+        ]
+      }
+    },
+    {
+      "name": "water_volumes",
+      "path": "water_volumes_all_providers.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Reported water volumes (withdrawal, consumption, discharge) at total, regional, by-source, and site resolution. value_liters is normalized to litres. Per-company copy: <company>/csv/water_volumes.csv.",
+      "schema": {
+        "fields": [
+          {"name": "provider", "type": "string"},
+          {"name": "scope", "type": "string", "description": "Reporting scope (corporate, region, source, datacentre location, etc.)."},
+          {"name": "geographic_resolution", "type": "string", "description": "global, region, site, etc."},
+          {"name": "location", "type": "string", "description": "Geography name (region, datacentre location, etc.)."},
+          {"name": "country", "type": "string", "description": "ISO 3166-1 alpha-2 country code where applicable."},
+          {"name": "period", "type": "string"},
+          {"name": "water_flow", "type": "string", "constraints": {"enum": ["withdrawal", "consumption", "discharge"]}},
+          {"name": "value", "type": "number", "description": "Value as reported."},
+          {"name": "reported_unit", "type": "string", "description": "Unit as reported (e.g. ML)."},
+          {"name": "value_liters", "type": "number", "unit": "L", "description": "Value normalized to litres."},
+          {"name": "value_qualifier", "type": "string"},
+          {"name": "caveat", "type": "string"},
+          {"name": "source_report_id", "type": "string"},
+          {"name": "source_url", "type": "string", "format": "uri"}
+        ]
+      }
+    },
+    {
+      "name": "water_shares",
+      "path": "water_shares_all_providers.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Percentage-share metrics (e.g. share of withdrawal in water-stressed areas, share from non-potable sources). Per-company copy: <company>/csv/water_shares.csv.",
+      "schema": {
+        "fields": [
+          {"name": "provider", "type": "string"},
+          {"name": "scope", "type": "string"},
+          {"name": "location", "type": "string"},
+          {"name": "period", "type": "string"},
+          {"name": "metric", "type": "string", "description": "Which share is reported."},
+          {"name": "water_flow", "type": "string"},
+          {"name": "percent", "type": "number", "unit": "%"},
+          {"name": "value_qualifier", "type": "string"},
+          {"name": "caveat", "type": "string"},
+          {"name": "source_report_id", "type": "string"},
+          {"name": "source_url", "type": "string", "format": "uri"}
+        ]
+      }
+    },
+    {
+      "name": "replenishment_and_progress",
+      "path": "replenishment_and_progress_all_providers.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Replenishment, avoided-water, and water-positive progress metrics. These are context/offset metrics; they are NOT withdrawal/consumption/discharge and must not be netted against operational water. Per-company copy: <company>/csv/replenishment_and_progress.csv.",
+      "schema": {
+        "fields": [
+          {"name": "provider", "type": "string"},
+          {"name": "scope", "type": "string"},
+          {"name": "location", "type": "string"},
+          {"name": "period", "type": "string"},
+          {"name": "metric", "type": "string"},
+          {"name": "category", "type": "string", "constraints": {"enum": ["water_replenishment", "avoided_water", "water_positive_progress"]}, "description": "Metric family of the row."},
+          {"name": "water_flow", "type": "string"},
+          {"name": "value", "type": "number"},
+          {"name": "reported_unit", "type": "string"},
+          {"name": "value_liters", "type": "number", "unit": "L", "description": "Value normalized to litres where a volume."},
+          {"name": "value_qualifier", "type": "string"},
+          {"name": "caveat", "type": "string"},
+          {"name": "source_report_id", "type": "string"},
+          {"name": "source_url", "type": "string", "format": "uri"}
+        ]
+      }
+    }
+  ]
+}

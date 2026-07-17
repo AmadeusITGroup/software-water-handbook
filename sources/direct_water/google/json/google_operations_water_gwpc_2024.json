@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.1.0",
+  "extraction_id": "google-operations-water-gwpc-2024",
+  "extracted_at": "2026-07-17T00:00:00Z",
+  "extractor": {
+    "name": "SWI resources maintainers",
+    "organization": "Amadeus (SWI working-group contribution)",
+    "method": "human_reviewed_automated"
+  },
+  "report": {
+    "report_id": "google_operations_water_gwpc_2024",
+    "report_title": "Google Direct Operations Water (GWPC / Eric Olsen presentation)",
+    "report_edition": "2024",
+    "report_year": 2024,
+    "publication_year": 2024,
+    "reporting_entity": "Google (Alphabet Inc.)",
+    "source_document_type": "other",
+    "reporting_period": {
+      "period_type": "calendar_year",
+      "period_label": "2024",
+      "start_date": "2024-01-01",
+      "end_date": "2024-12-31"
+    },
+    "source_url": "https://www.gwpc.org/wp-content/uploads/2024/10/Eric-Olsen.pdf",
+    "local_archive_path": "www.gwpc.org_wp-content_uploads_2024_10_Eric-Olsen.pdf",
+    "accessed_at": "2026-07-17",
+    "language": "en"
+  },
+  "definitions": {
+    "metric_definitions": [
+      {
+        "metric_definition_id": "md-total-consumption",
+        "metric_name": "Total water consumption (direct operations)",
+        "metric_family": "water_volume",
+        "quantity_kind": "total",
+        "definition_text": "Google direct-operations water consumption (withdrawals minus discharges), data centres and offices.",
+        "water_accounting_flow": "consumption",
+        "water_layer": "direct_operational"
+      }
+    ],
+    "scope_definitions": [
+      {
+        "scope_definition_id": "sc-google-ops",
+        "scope_name": "Google direct operations (data centres + offices)",
+        "organizational_boundary": "corporate_operations",
+        "aggregation_level": "corporate",
+        "facility_types_included": [
+          "data_centre",
+          "office"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled"
+        ],
+        "product_attribution": "corporate_only",
+        "coverage_completeness": "complete",
+        "exclusions": [
+          "Not GCP- or workload-specific"
+        ]
+      }
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "obs-google-consumption-2024",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-total-consumption",
+      "scope_definition_id": "sc-google-ops",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2024",
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "Google direct operations"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 8.1,
+        "value_qualifier": "approximate",
+        "reported_unit": "billion US gal",
+        "normalized_value": 30661835450.399998,
+        "normalized_unit": "L",
+        "conversion_factor": 3785411784.0,
+        "conversion_source": "1 billion US gal = 3.785411784e9 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "consumption",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "mixed_operations"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Direct-operations consumption (withdrawals minus discharges) reported in a Google presentation summarised by GWPC."
+      },
+      "evidence": {
+        "evidence_text": "8.1 billion gallons consumed in 2024 direct operations (withdrawals minus discharges).",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "secondary_source_only"
+      },
+      "quality": {
+        "source_authority": "secondary",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Secondary source (GWPC summary of Google speaker material)",
+          "Corroborates the 2026 report's +34% 2024->2025 growth"
+        ]
+      }
+    }
+  ],
+  "relationships": [],
+  "extraction_notes": "Secondary source: Google direct-operations water consumption for 2024 (~8.1 billion US gal), consistent with the 2026 report's statement that 2025 consumption (10.9 billion US gal) was +34% over 2024."
+}

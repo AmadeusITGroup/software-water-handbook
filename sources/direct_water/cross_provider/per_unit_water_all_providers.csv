@@ -1,0 +1,2 @@
+provider,service_applicability,region,period,value,reported_unit,value_liters,denominator,value_qualifier,water_flow,caveat,source_report_id,source_url
+Google (Alphabet Inc.),Gemini Apps text-prompt inference,Gemini Apps inference,2025 (May 2025 methodology),0.26,mL/prompt,0.00026,prompt,exact,consumption,"Median text prompt; Gemini Apps service, not generic GCP",google_environmental_report_2026,https://sustainability.google/reports/google-2026-environmental-report/

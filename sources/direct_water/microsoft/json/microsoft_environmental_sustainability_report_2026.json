@@ -1,0 +1,789 @@
+{
+  "schema_version": "1.1.0",
+  "extraction_id": "microsoft-2026-environmental-sustainability-report",
+  "extracted_at": "2026-07-17T00:00:00Z",
+  "extractor": {
+    "name": "SWI resources maintainers",
+    "organization": "Amadeus (SWI working-group contribution)",
+    "method": "human_reviewed_automated"
+  },
+  "report": {
+    "report_id": "microsoft_2026_environmental_sustainability_report",
+    "report_title": "Microsoft 2026 Environmental Sustainability Report",
+    "report_edition": "2026",
+    "report_year": 2026,
+    "publication_year": 2026,
+    "reporting_entity": "Microsoft",
+    "source_document_type": "corporate_report",
+    "reporting_period": {
+      "period_type": "fiscal_year",
+      "period_label": "FY25",
+      "start_date": "2024-07-01",
+      "end_date": "2025-06-30"
+    },
+    "source_url": "https://www.microsoft.com/en-us/corporate-responsibility/sustainability/report",
+    "local_archive_path": "microsoft_2026_environmental_sustainability_report.pdf",
+    "accessed_at": "2026-07-17",
+    "language": "en"
+  },
+  "definitions": {
+    "metric_definitions": [
+      {
+        "metric_definition_id": "md-wue",
+        "metric_name": "Water Usage Effectiveness (WUE)",
+        "metric_family": "water_intensity",
+        "quantity_kind": "intensity",
+        "definition_text": "Ratio of the annual amount of water used for cooling and humidification to annual IT-equipment energy; lower is better.",
+        "numerator_definition": "Annual water used for cooling and humidification (L)",
+        "denominator_definition": "Annual IT-equipment energy (kWh)",
+        "water_accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-wue-reduction",
+        "metric_name": "WUE reduction versus 2022 baseline",
+        "metric_family": "water_positive_progress",
+        "quantity_kind": "percentage",
+        "definition_text": "Percentage reduction in datacentre WUE relative to the 2022 baseline.",
+        "water_accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-avoided-water",
+        "metric_name": "Designed avoided cooling water per datacentre",
+        "metric_family": "avoided_water",
+        "quantity_kind": "total",
+        "definition_text": "Design-based estimate of cooling water avoided per datacentre per year by new liquid/closed-loop cooling systems.",
+        "water_accounting_flow": "avoided_use",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-replenishment-benefit",
+        "metric_name": "Expected lifetime replenishment benefit",
+        "metric_family": "water_replenishment",
+        "quantity_kind": "total",
+        "definition_text": "Expected lifetime water benefit from funded replenishment projects.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-replenishment-delivered",
+        "metric_name": "Water replenishment delivered",
+        "metric_family": "water_replenishment",
+        "quantity_kind": "total",
+        "definition_text": "Volume of water replenishment delivered in the reporting period; restores water to watersheds and is not withdrawal/consumption/discharge.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-replenishment-contracted",
+        "metric_name": "Contracted replenishment volume (lifetime, to date)",
+        "metric_family": "water_replenishment",
+        "quantity_kind": "total",
+        "definition_text": "Cumulative lifetime volumetric water benefit of all contracted replenishment projects to date.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-municipal-water-reduction",
+        "metric_name": "Municipal water use reduction (year over year)",
+        "metric_family": "water_positive_progress",
+        "quantity_kind": "percentage",
+        "definition_text": "Year-over-year reduction in municipal water use at a campus from efficiency and wastewater reuse.",
+        "water_accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-water-conserved-partnership",
+        "metric_name": "Water conserved via leak-repair partnership",
+        "metric_family": "water_positive_progress",
+        "quantity_kind": "total",
+        "definition_text": "Volume of water conserved to date through verified leak repairs in partnership programs (community-level, outside Microsoft operations).",
+        "water_accounting_flow": "avoided_use",
+        "water_layer": "context_only"
+      }
+    ],
+    "scope_definitions": [
+      {
+        "scope_definition_id": "sc-owned-dc-fleet",
+        "scope_name": "Microsoft owned-datacentre fleet",
+        "organizational_boundary": "data_centre_fleet",
+        "aggregation_level": "fleet",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled"
+        ],
+        "product_attribution": "not_attributed",
+        "coverage_completeness": "complete",
+        "exclusions": [
+          "Not Azure-specific; fleet average, not a workload factor"
+        ]
+      },
+      {
+        "scope_definition_id": "sc-phoenix",
+        "scope_name": "Phoenix, Arizona datacentres",
+        "organizational_boundary": "facility",
+        "aggregation_level": "site",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled"
+        ],
+        "product_attribution": "not_attributed",
+        "coverage_completeness": "partial"
+      },
+      {
+        "scope_definition_id": "sc-design-benchmark",
+        "scope_name": "Per-datacentre cooling design benchmark",
+        "organizational_boundary": "technology_benchmark",
+        "aggregation_level": "technology",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned"
+        ],
+        "product_attribution": "not_applicable",
+        "coverage_completeness": "unknown"
+      },
+      {
+        "scope_definition_id": "sc-replenishment-program",
+        "scope_name": "Microsoft water replenishment program",
+        "organizational_boundary": "corporate_operations",
+        "aggregation_level": "corporate",
+        "facility_types_included": [
+          "not_applicable"
+        ],
+        "ownership_coverage": [
+          "not_applicable"
+        ],
+        "product_attribution": "not_applicable",
+        "coverage_completeness": "partial"
+      },
+      {
+        "scope_definition_id": "sc-chicago",
+        "scope_name": "Chicago, Illinois campus",
+        "organizational_boundary": "facility",
+        "aggregation_level": "site",
+        "facility_types_included": [
+          "data_centre",
+          "campus"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled"
+        ],
+        "product_attribution": "not_attributed",
+        "coverage_completeness": "partial"
+      },
+      {
+        "scope_definition_id": "sc-fido-partnership",
+        "scope_name": "FIDO Tech leak-repair partnership (community)",
+        "organizational_boundary": "other",
+        "aggregation_level": "other",
+        "facility_types_included": [
+          "not_applicable"
+        ],
+        "ownership_coverage": [
+          "not_applicable"
+        ],
+        "product_attribution": "not_applicable",
+        "coverage_completeness": "partial",
+        "inclusions": [
+          "Community/watershed conservation, outside Microsoft facility operations"
+        ]
+      }
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "obs-wue-fy25-global",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-wue",
+      "scope_definition_id": "sc-owned-dc-fleet",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "Microsoft owned datacentres (global)"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "mean",
+        "value": 0.27,
+        "value_qualifier": "exact",
+        "reported_unit": "L/kWh",
+        "normalized_value": 0.27,
+        "normalized_unit": "L/kWh"
+      },
+      "denominator": {
+        "denominator_quantity": "it_equipment_energy",
+        "denominator_unit": "kWh",
+        "denominator_scope": "Owned-datacentre IT energy"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling",
+          "humidification"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "modelled",
+          "mixed"
+        ],
+        "method_description": "Annual water used for cooling and humidification divided by annual IT-equipment energy, owned-datacentre fleet average."
+      },
+      "evidence": {
+        "evidence_text": "FY25 global average WUE of 0.27 L/kWh across owned datacentres.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": []
+      }
+    },
+    {
+      "observation_id": "obs-wue-reduction-since-2022",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-wue-reduction",
+      "scope_definition_id": "sc-owned-dc-fleet",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "Microsoft owned datacentres (global)"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 25.0,
+        "value_qualifier": "exact",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling",
+          "humidification"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "modelled",
+          "mixed"
+        ],
+        "method_description": "Reduction in global datacentre WUE relative to the 2022 baseline."
+      },
+      "evidence": {
+        "evidence_text": "Reduced global datacenter water usage effectiveness by 25% from the 2022 baseline.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": []
+      }
+    },
+    {
+      "observation_id": "obs-wue-target-2030",
+      "record_role": "scenario",
+      "metric_definition_id": "md-wue-reduction",
+      "scope_definition_id": "sc-owned-dc-fleet",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY30 target",
+        "start_date": "2029-07-01",
+        "end_date": "2030-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "Microsoft owned datacentres (global)"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 40.0,
+        "value_qualifier": "exact",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling",
+          "humidification"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "modelled",
+          "mixed"
+        ],
+        "method_description": "Stated 2030 WUE reduction target versus the 2022 baseline."
+      },
+      "evidence": {
+        "evidence_text": "Progressing toward our 40% reduction target (2030) versus the 2022 baseline.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": []
+      },
+      "notes": "Forward-looking target, not a measured outcome."
+    },
+    {
+      "observation_id": "obs-wue-phoenix-improvement-fy25",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-wue-reduction",
+      "scope_definition_id": "sc-phoenix",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "site",
+        "geography_name": "Phoenix, Arizona datacentres",
+        "country_code": "US"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 23.0,
+        "value_qualifier": "exact",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "modelled",
+          "mixed"
+        ],
+        "method_description": "WUE improvement at Phoenix datacentres in FY25 versus the previous year, from cooling-system adjustments."
+      },
+      "evidence": {
+        "evidence_text": "Improved WUE by 23% in our Phoenix, Arizona datacenters in FY25 compared to the previous year.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": []
+      }
+    },
+    {
+      "observation_id": "obs-avoided-cooling-water-design",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-avoided-water",
+      "scope_definition_id": "sc-design-benchmark",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "not_applicable",
+        "geography_name": "Per-datacentre design benchmark"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_low": 125.0,
+        "value_qualifier": "greater_than",
+        "reported_unit": "million L",
+        "normalized_value_low": 125000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000.0
+      },
+      "water_boundary": {
+        "accounting_flow": "avoided_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "modelled",
+          "mixed"
+        ],
+        "method_description": "Design-based avoided cooling water from new liquid/closed-loop cooling systems; a modelled avoided-use claim, not measured operational water."
+      },
+      "evidence": {
+        "evidence_text": "Designed new liquid cooling systems expected to avoid more than 125 million liters of water annually per datacenter.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": []
+      },
+      "notes": "Design-based avoided-use estimate per datacentre; does not imply zero total facility water."
+    },
+    {
+      "observation_id": "obs-replenishment-projects-fy25",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-replenishment-benefit",
+      "scope_definition_id": "sc-replenishment-program",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "Microsoft replenishment program"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_low": 29.0,
+        "value_qualifier": "greater_than",
+        "reported_unit": "million m3",
+        "normalized_value_low": 29000000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000000.0,
+        "conversion_source": "1 million m3 = 1e9 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "modelled",
+          "mixed"
+        ],
+        "method_description": "Expected lifetime benefit of 24 new water replenishment projects funded in 2025."
+      },
+      "evidence": {
+        "evidence_text": "Funded 24 new water replenishment projects, estimated to provide more than 29 million cubic meters of volumetric water benefit over their lifetime.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": []
+      },
+      "notes": "Expected lifetime benefit across 24 projects; not an annual operational volume."
+    },
+    {
+      "observation_id": "obs-replenishment-delivered-fy25",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-replenishment-delivered",
+      "scope_definition_id": "sc-replenishment-program",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "Microsoft replenishment program"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_low": 14.2,
+        "value_qualifier": "greater_than",
+        "reported_unit": "million m3",
+        "normalized_value_low": 14200000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000000.0,
+        "conversion_source": "1 million m3 = 1e9 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "supplier_data",
+          "mixed"
+        ],
+        "method_description": "Volumetric water benefit delivered in FY25 from replenishment projects."
+      },
+      "evidence": {
+        "evidence_text": "Replenished over 14.2 million cubic meters (m3) of water, which, for the first time, surpassed our global water withdrawals.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Replenishment is not withdrawal/consumption/discharge; delivered locally watershed by watershed"
+        ]
+      },
+      "notes": "First year replenishment delivered exceeded global water withdrawals."
+    },
+    {
+      "observation_id": "obs-replenishment-contracted-todate",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-replenishment-contracted",
+      "scope_definition_id": "sc-replenishment-program",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "multi_region",
+        "geography_name": "34 priority locations globally"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_low": 133.0,
+        "value_qualifier": "greater_than",
+        "reported_unit": "million m3",
+        "normalized_value_low": 133000000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000000.0,
+        "conversion_source": "1 million m3 = 1e9 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "supplier_data",
+          "mixed"
+        ],
+        "method_description": "Cumulative lifetime replenishment volume of all contracted projects to date, across 34 priority locations."
+      },
+      "evidence": {
+        "evidence_text": "To date, contracted projects represent more than 133 million m3 of replenishment volume over their lifetime, with our footprint now spanning 34 priority locations globally.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Cumulative lifetime figure across contracted projects; not an annual operational volume"
+        ]
+      },
+      "notes": "Cumulative 'to date' figure, not a single-year value."
+    },
+    {
+      "observation_id": "obs-municipal-reduction-chicago-fy25",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-municipal-water-reduction",
+      "scope_definition_id": "sc-chicago",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "site",
+        "geography_name": "Chicago, Illinois campus",
+        "country_code": "US"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_low": 30.0,
+        "value_qualifier": "greater_than",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ],
+        "water_source_categories": [
+          "municipal_water",
+          "recycled_water"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "supplier_data",
+          "mixed"
+        ],
+        "method_description": "Wastewater capture-and-reuse system for IT cooling plus efficiency improvements."
+      },
+      "evidence": {
+        "evidence_text": "At a Chicago campus, a system captures and treats wastewater used for cooling IT equipment for repeated reuse, helping cut the campus's use of municipal water by more than 30% year over year.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Single-campus result; not fleet-wide"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-water-conserved-fido-todate",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-water-conserved-partnership",
+      "scope_definition_id": "sc-fido-partnership",
+      "period": {
+        "period_type": "fiscal_year",
+        "period_label": "FY25",
+        "start_date": "2024-07-01",
+        "end_date": "2025-06-30"
+      },
+      "geography": {
+        "geographic_resolution": "multi_region",
+        "geography_name": "FIDO Tech partnership (community leak repairs)"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_low": 8.5,
+        "value_qualifier": "greater_than",
+        "reported_unit": "million m3",
+        "normalized_value_low": 8500000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000000.0,
+        "conversion_source": "1 million m3 = 1e9 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "avoided_use",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "supplier_data",
+          "mixed"
+        ],
+        "method_description": "Water conserved to date through 357 verified leak repairs via the FIDO Tech partnership."
+      },
+      "evidence": {
+        "evidence_text": "Our partnership with FIDO Tech has supported 357 verified repairs and conserved more than 8.5 million cubic meters (m3) of water so far.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Community/watershed conservation outside Microsoft operations; cumulative to date"
+        ]
+      }
+    }
+  ],
+  "relationships": [],
+  "extraction_notes": "Narrative water metrics from the sustainability report: FY25 global WUE (0.27 L/kWh), WUE reduction since 2022 (25%) and 2030 target (40%), Phoenix FY25 WUE improvement (23%), designed avoided cooling water (>125 million L/datacentre/yr), replenishment delivered in FY25 (>14.2 million m3, surpassing global withdrawals for the first time), 24 new projects (>29 million m3 lifetime) and contracted replenishment to date (>133 million m3 across 34 locations), a Chicago campus municipal-water reduction (>30% YoY), and FIDO Tech partnership conservation (>8.5 million m3 to date). WUE is a provider-reported 'water use' intensity; not Azure- or workload-specific."
+}

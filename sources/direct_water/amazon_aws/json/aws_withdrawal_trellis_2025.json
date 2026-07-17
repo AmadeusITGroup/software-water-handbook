@@ -1,0 +1,345 @@
+{
+  "schema_version": "1.1.0",
+  "extraction_id": "aws-withdrawal-trellis-2025",
+  "extracted_at": "2026-07-17T00:00:00Z",
+  "extractor": {
+    "name": "SWI resources maintainers",
+    "organization": "Amadeus (SWI working-group contribution)",
+    "method": "human_reviewed_automated"
+  },
+  "report": {
+    "report_id": "aws_withdrawal_trellis_2025",
+    "report_title": "Behind Amazon's Industry-Leading Water Efficiency Score (Trellis)",
+    "report_edition": "2025",
+    "report_year": 2025,
+    "publication_year": 2025,
+    "reporting_entity": "Amazon Web Services",
+    "source_document_type": "other",
+    "reporting_period": {
+      "period_type": "calendar_year",
+      "period_label": "2025",
+      "start_date": "2025-01-01",
+      "end_date": "2025-12-31"
+    },
+    "source_url": "https://trellis.net/article/behind-amazons-industry-leading-water-efficiency-score/",
+    "local_archive_path": "trellis.net_article_behind-amazons-industry-leading-water-efficiency-score.html",
+    "accessed_at": "2026-07-17",
+    "language": "en"
+  },
+  "definitions": {
+    "metric_definitions": [
+      {
+        "metric_definition_id": "md-wue",
+        "metric_name": "Water Usage Effectiveness (WUE)",
+        "metric_family": "water_intensity",
+        "quantity_kind": "intensity",
+        "definition_text": "Litres of water per kWh of IT load (AWS global data-centre footprint average).",
+        "numerator_definition": "Annual water (litres)",
+        "denominator_definition": "IT load energy (kWh)",
+        "water_accounting_flow": "withdrawal",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-dc-withdrawal",
+        "metric_name": "AWS data-centre annual water withdrawal",
+        "metric_family": "water_volume",
+        "quantity_kind": "total",
+        "definition_text": "Annual water withdrawn across AWS's global data-centre footprint.",
+        "water_accounting_flow": "withdrawal",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-replenishment-benefit",
+        "metric_name": "Expected annual replenishment return",
+        "metric_family": "water_replenishment",
+        "quantity_kind": "total",
+        "definition_text": "Expected annual water return from announced replenishment projects.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      }
+    ],
+    "scope_definitions": [
+      {
+        "scope_definition_id": "sc-aws-fleet",
+        "scope_name": "AWS global data-centre fleet",
+        "organizational_boundary": "data_centre_fleet",
+        "aggregation_level": "fleet",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled"
+        ],
+        "product_attribution": "not_attributed",
+        "service_or_product": "AWS",
+        "coverage_completeness": "complete",
+        "exclusions": [
+          "Not region- or workload-attributed; not Amazon corporate operations"
+        ]
+      },
+      {
+        "scope_definition_id": "sc-aws-replenishment",
+        "scope_name": "AWS water-positive / replenishment program",
+        "organizational_boundary": "corporate_operations",
+        "aggregation_level": "corporate",
+        "facility_types_included": [
+          "not_applicable"
+        ],
+        "ownership_coverage": [
+          "not_applicable"
+        ],
+        "product_attribution": "not_applicable",
+        "coverage_completeness": "partial"
+      }
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "obs-trellis-withdrawal-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-dc-withdrawal",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data centres"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value_qualifier": "approximate",
+        "reported_unit": "billion US gal",
+        "normalized_value": 9463529460.0,
+        "normalized_unit": "L",
+        "conversion_factor": 3785411784.0,
+        "conversion_source": "1 billion US gal = 3.785411784e9 L",
+        "value": 2.5
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "First-time AWS data-centre withdrawal disclosure, reported by Trellis."
+      },
+      "evidence": {
+        "evidence_text": "Amazon's data centers withdrew 2.5 billion gallons of water in 2025.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "secondary_source_only"
+      },
+      "quality": {
+        "source_authority": "secondary",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Secondary source (Trellis) reporting Amazon's disclosure"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-trellis-wue-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data centres"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "mean",
+        "value": 0.12,
+        "value_qualifier": "exact",
+        "reported_unit": "L/kWh",
+        "normalized_value": 0.12,
+        "normalized_unit": "L/kWh"
+      },
+      "denominator": {
+        "denominator_quantity": "it_load_energy",
+        "denominator_unit": "kWh",
+        "denominator_scope": "AWS data-centre IT load"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "AWS WUE reported by Trellis."
+      },
+      "evidence": {
+        "evidence_text": "Using 0.12 l/kWh, the company reported.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "secondary_source_only"
+      },
+      "quality": {
+        "source_authority": "secondary",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Secondary source; Trellis refers to it as water consumption, AWS elsewhere frames withdrawal"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-trellis-replenishment-annual",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-replenishment-benefit",
+      "scope_definition_id": "sc-aws-replenishment",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS replenishment projects"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_qualifier": "greater_than",
+        "reported_unit": "billion US gal",
+        "normalized_value_low": 21955388347.2,
+        "normalized_unit": "L",
+        "conversion_factor": 3785411784.0,
+        "conversion_source": "1 billion US gal = 3.785411784e9 L",
+        "value_low": 5.8
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Expected annual return from replenishment projects, reported by Trellis."
+      },
+      "evidence": {
+        "evidence_text": "Enough to return more than 5.8 billion gallons of water on an annual basis.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "secondary_source_only"
+      },
+      "quality": {
+        "source_authority": "secondary",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Secondary source"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-trellis-replenishment-target-2030",
+      "record_role": "scenario",
+      "metric_definition_id": "md-replenishment-benefit",
+      "scope_definition_id": "sc-aws-replenishment",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2030 target",
+        "start_date": "2030-01-01",
+        "end_date": "2030-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS replenishment projects"
+      },
+      "value": {
+        "value_status": "bounded",
+        "statistic_type": "minimum",
+        "value_qualifier": "greater_than",
+        "reported_unit": "billion US gal",
+        "normalized_value_low": 71922823896.0,
+        "normalized_unit": "L",
+        "conversion_factor": 3785411784.0,
+        "conversion_source": "1 billion US gal = 3.785411784e9 L",
+        "value_low": 19.0
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Projects underway to replenish more than 19 billion gallons annually by 2030, reported by Trellis."
+      },
+      "evidence": {
+        "evidence_text": "Projects under way that will replenish more than 19 billion gallons of water annually by 2030.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "secondary_source_only"
+      },
+      "quality": {
+        "source_authority": "secondary",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Forward-looking target; secondary source"
+        ]
+      },
+      "notes": "Forward-looking 2030 replenishment target."
+    }
+  ],
+  "relationships": [],
+  "extraction_notes": "Secondary-source (Trellis) reporting of Amazon's first-time AWS data-centre withdrawal disclosure (~2.5 billion US gal, 2025), WUE (0.12 L/kWh), replenishment (>5.8 billion US gal/yr; >19 billion US gal/yr target by 2030). All observations flagged secondary_source_only; corroborates the AWS primary page."
+}

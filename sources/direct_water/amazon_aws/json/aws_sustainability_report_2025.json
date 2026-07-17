@@ -1,0 +1,813 @@
+{
+  "schema_version": "1.1.0",
+  "extraction_id": "aws-amazon-2025-sustainability-report",
+  "extracted_at": "2026-07-17T00:00:00Z",
+  "extractor": {
+    "name": "SWI resources maintainers",
+    "organization": "Amadeus (SWI working-group contribution)",
+    "method": "human_reviewed_automated"
+  },
+  "report": {
+    "report_id": "amazon_2025_sustainability_report",
+    "report_title": "Amazon 2025 Sustainability Report",
+    "report_edition": "2025",
+    "report_year": 2025,
+    "publication_year": 2025,
+    "reporting_entity": "Amazon Web Services",
+    "source_document_type": "corporate_report",
+    "reporting_period": {
+      "period_type": "calendar_year",
+      "period_label": "2025",
+      "start_date": "2025-01-01",
+      "end_date": "2025-12-31"
+    },
+    "source_url": "https://sustainability.aboutamazon.com/",
+    "local_archive_path": "amazon_2025_sustainability_report.pdf",
+    "accessed_at": "2026-07-17",
+    "language": "en"
+  },
+  "definitions": {
+    "metric_definitions": [
+      {
+        "metric_definition_id": "md-aws-wue",
+        "metric_name": "Data-centre Water Usage Effectiveness (withdrawal-based)",
+        "metric_family": "water_intensity",
+        "quantity_kind": "intensity",
+        "definition_text": "Litres of water withdrawn per kilowatt-hour of IT load, reported as an AWS global data-centre fleet average.",
+        "numerator_definition": "Annual water withdrawal (litres)",
+        "denominator_definition": "IT load energy (kWh)",
+        "water_accounting_flow": "withdrawal",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-aws-withdrawal",
+        "metric_name": "AWS data-centre annual water withdrawal",
+        "metric_family": "water_volume",
+        "quantity_kind": "total",
+        "definition_text": "Annual water withdrawn by AWS data centres across the global fleet.",
+        "water_accounting_flow": "withdrawal",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-aws-stress-share",
+        "metric_name": "Share of data-centre withdrawal by WRI Aqueduct water-stress level",
+        "metric_family": "water_share",
+        "quantity_kind": "percentage",
+        "definition_text": "Percentage of data-centre water withdrawal occurring in a given WRI Aqueduct baseline water-stress class (2030 business-as-usual scenario).",
+        "water_accounting_flow": "withdrawal",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-aws-waterpositive",
+        "metric_name": "Water-positive progress",
+        "metric_family": "water_positive_progress",
+        "quantity_kind": "percentage",
+        "definition_text": "Progress toward returning more water to communities than used across direct data-centre operations by 2030.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-aws-replenishment",
+        "metric_name": "Water replenishment delivered",
+        "metric_family": "water_replenishment",
+        "quantity_kind": "total",
+        "definition_text": "Volumetric water benefit returned to communities by Amazon's replenishment portfolio.",
+        "water_accounting_flow": "replenishment",
+        "water_layer": "context_only"
+      },
+      {
+        "metric_definition_id": "md-aws-avoided",
+        "metric_name": "Cooling water avoided / potable water preserved",
+        "metric_family": "avoided_water",
+        "quantity_kind": "total",
+        "definition_text": "Cooling water avoided through efficiency, or potable water preserved by sourcing reclaimed water.",
+        "water_accounting_flow": "avoided_use",
+        "water_layer": "context_only"
+      }
+    ],
+    "scope_definitions": [
+      {
+        "scope_definition_id": "sc-aws-fleet",
+        "scope_name": "AWS global data-centre fleet",
+        "organizational_boundary": "data_centre_fleet",
+        "aggregation_level": "fleet",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled",
+          "leased"
+        ],
+        "product_attribution": "not_attributed",
+        "coverage_completeness": "complete",
+        "exclusions": [
+          "Amazon corporate operations and offices",
+          "region- or workload-level attribution"
+        ]
+      },
+      {
+        "scope_definition_id": "sc-aws-waterpositive",
+        "scope_name": "AWS direct data-centre operations (water-positive goal)",
+        "organizational_boundary": "data_centre_fleet",
+        "aggregation_level": "fleet",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled",
+          "leased"
+        ],
+        "product_attribution": "not_attributed",
+        "coverage_completeness": "partial",
+        "inclusions": [
+          "Direct data-centre operations only"
+        ]
+      }
+    ],
+    "framework_definitions": [
+      {
+        "framework_definition_id": "fw-aqueduct",
+        "framework_class": "risk_tool",
+        "name": "WRI Aqueduct Water Risk Atlas",
+        "indicator": "baseline_water_stress",
+        "category_scheme": "low / medium / high / extremely high",
+        "definition_text": "World Resources Institute Aqueduct Water Risk Atlas. Amazon defines water stress as the ratio of total water demand to available renewable surface and groundwater supplies, using WRI's 2030 business-as-usual baseline scenario (source water stress; leased and owned data centres).",
+        "source_url": "https://www.wri.org/aqueduct"
+      }
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "obs-aws-wue-2024",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2024",
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global fleet"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 0.15,
+        "value_qualifier": "exact",
+        "reported_unit": "L/kWh",
+        "normalized_value": 0.15,
+        "normalized_unit": "L/kWh"
+      },
+      "denominator": {
+        "denominator_quantity": "it_load_energy",
+        "denominator_unit": "kWh",
+        "denominator_scope": "AWS data-centre IT load"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Fleet-average withdrawal-based WUE (litres withdrawn per kWh of IT load)."
+      },
+      "evidence": {
+        "evidence_text": "AWS data-centre WUE 2024 fleet WUE.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Fleet average; not regional or workload-attributed"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-wue-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global fleet"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 0.12,
+        "value_qualifier": "exact",
+        "reported_unit": "L/kWh",
+        "normalized_value": 0.12,
+        "normalized_unit": "L/kWh"
+      },
+      "denominator": {
+        "denominator_quantity": "it_load_energy",
+        "denominator_unit": "kWh",
+        "denominator_scope": "AWS data-centre IT load"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Fleet-average withdrawal-based WUE (litres withdrawn per kWh of IT load)."
+      },
+      "evidence": {
+        "evidence_text": "AWS data-centre WUE 0.12 L/kWh in 2025, a 20% improvement from 2024 and 52% since 2021.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Fleet average; not regional or workload-attributed"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-withdrawal-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-withdrawal",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global leased, owned, and shared data centres"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 9.4,
+        "value_qualifier": "exact",
+        "reported_unit": "billion L",
+        "normalized_value": 9400000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000000.0,
+        "conversion_source": "1 billion L = 1000000000 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Total annual data-centre water withdrawal, global fleet."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, Amazon's global leased, owned, and shared data centers withdrew 9.4 billion liters of water.",
+        "citation": {
+          "section": "Water Positive Data Centers"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Global fleet total; not regional or workload-attributed; withdrawal only (no consumption/discharge split)"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-stress-low-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-stress-share",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS data-centre withdrawal by WRI Aqueduct water-stress level"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 48,
+        "value_qualifier": "exact",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Share of data-centre water withdrawal by WRI Aqueduct baseline water-stress class (2030 business-as-usual scenario; leased and owned)."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, 48% of our total water withdrawals ... occurred in regions classified as low water stress.",
+        "citation": {
+          "section": "Water Positive Data Centers"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Leased and owned data centres; WRI 2030 BAU baseline scenario; medium-stress share not stated"
+        ]
+      },
+      "risk_context": {
+        "risk_framework_definition_id": "fw-aqueduct",
+        "risk_indicator": "baseline_water_stress",
+        "risk_category": "low",
+        "risk_threshold": "WRI 2030 BAU baseline scenario"
+      },
+      "framework_definition_ids": [
+        "fw-aqueduct"
+      ]
+    },
+    {
+      "observation_id": "obs-aws-stress-high-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-stress-share",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS data-centre withdrawal by WRI Aqueduct water-stress level"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 22,
+        "value_qualifier": "exact",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "withdrawal",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Share of data-centre water withdrawal by WRI Aqueduct baseline water-stress class (2030 business-as-usual scenario; leased and owned)."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, 22% occurred in regions classified as high or extremely high water stress.",
+        "citation": {
+          "section": "Water Positive Data Centers"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Leased and owned data centres; WRI 2030 BAU baseline scenario; medium-stress share not stated"
+        ]
+      },
+      "risk_context": {
+        "risk_framework_definition_id": "fw-aqueduct",
+        "risk_indicator": "baseline_water_stress",
+        "risk_category": "high or extremely high",
+        "risk_threshold": "WRI 2030 BAU baseline scenario"
+      },
+      "framework_definition_ids": [
+        "fw-aqueduct"
+      ]
+    },
+    {
+      "observation_id": "obs-aws-waterpositive-2024",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-waterpositive",
+      "scope_definition_id": "sc-aws-waterpositive",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2024",
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS direct data-centre operations"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 53,
+        "value_qualifier": "exact",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Progress toward the 2030 data-centre water-positive goal (Amazon Water Positive Methodology)."
+      },
+      "evidence": {
+        "evidence_text": "By the end of 2024, we achieved 53% of this [water positive] goal.",
+        "citation": {
+          "section": "Water Positive Data Centers"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Progress metric, not an operational water volume"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-waterpositive-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-waterpositive",
+      "scope_definition_id": "sc-aws-waterpositive",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS direct data-centre operations"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 75,
+        "value_qualifier": "exact",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Progress toward the 2030 data-centre water-positive goal (Amazon Water Positive Methodology)."
+      },
+      "evidence": {
+        "evidence_text": "By the end of 2025, we achieved 75% of this [water positive] goal.",
+        "citation": {
+          "section": "Water Positive Data Centers"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Progress metric, not an operational water volume"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-replenished-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-replenishment",
+      "scope_definition_id": "sc-aws-waterpositive",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS water replenishment portfolio (45 projects)"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 9.4,
+        "value_qualifier": "exact",
+        "reported_unit": "billion L",
+        "normalized_value": 9400000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000000.0,
+        "conversion_source": "1 billion L = 1000000000 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Volumetric water benefit returned by active replenishment projects."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, water replenishment projects returned 9.4 billion liters of water to communities.",
+        "citation": {
+          "section": "Replenishment across Amazon"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Replenishment/offset, not netted against withdrawal; 45 projects at end of 2025"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-replenishment-contracted",
+      "record_role": "scenario",
+      "metric_definition_id": "md-aws-replenishment",
+      "scope_definition_id": "sc-aws-waterpositive",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS contracted future replenishment"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 18,
+        "value_qualifier": "greater_than",
+        "reported_unit": "billion L",
+        "normalized_value": 18000000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000000.0,
+        "conversion_source": "1 billion L = 1000000000 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "replenishment",
+        "water_layer": "context_only",
+        "freshwater_status": "not_applicable",
+        "end_uses": [
+          "not_applicable"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Total annual replenishment volume contracted for future years."
+      },
+      "evidence": {
+        "evidence_text": "more than 18 billion liters of total annual replenishment volume contracted for future years.",
+        "citation": {
+          "section": "Water Positive Data Centers"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Forward-looking contracted volume"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-cooling-reduced-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-avoided",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data-centre fleet"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 938,
+        "value_qualifier": "exact",
+        "reported_unit": "million L",
+        "normalized_value": 938000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000.0,
+        "conversion_source": "1 million L = 1000000 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "avoided_use",
+        "water_layer": "context_only",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Cooling water avoided/potable water preserved through efficiency and reclaimed-water sourcing."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, reduced our global data center cooling water use by 938 million liters in 2025.",
+        "citation": {
+          "section": "Advancing Water Efficiency"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Avoided/preserved water, not an operational withdrawal or consumption"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-aws-potable-preserved-2025",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-avoided",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {
+        "period_type": "calendar_year",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "global",
+        "geography_name": "AWS global data-centre fleet"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 849,
+        "value_qualifier": "exact",
+        "reported_unit": "million L",
+        "normalized_value": 849000000.0,
+        "normalized_unit": "L",
+        "conversion_factor": 1000000.0,
+        "conversion_source": "1 million L = 1000000 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "avoided_use",
+        "water_layer": "context_only",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "metered",
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Cooling water avoided/potable water preserved through efficiency and reclaimed-water sourcing."
+      },
+      "evidence": {
+        "evidence_text": "In 2025, reclaimed water used at data centers preserved 849 million liters of potable water.",
+        "citation": {
+          "section": "Advancing Water Efficiency"
+        },
+        "review_status": "primary_source_validated"
+      },
+      "quality": {
+        "source_authority": "primary_official",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Avoided/preserved water, not an operational withdrawal or consumption"
+        ]
+      }
+    }
+  ],
+  "relationships": [],
+  "extraction_notes": "Amazon 2025 Sustainability Report, data-centre water section. Amazon DOES use the WRI Aqueduct Water Risk Atlas (2030 business-as-usual baseline scenario) and reports the share of data-centre withdrawal by water-stress level (48% low, 22% high/extremely high in 2025). Also captures 2025 data-centre withdrawal (9.4 bn L), withdrawal-based WUE (0.15 in 2024, 0.12 in 2025), water-positive progress (53% 2024 -> 75% 2025), replenishment returned (9.4 bn L in 2025; >18 bn L contracted), and avoided/preserved water (938 M L cooling reduced; 849 M L potable preserved). Withdrawal only: no consumption or discharge split, so SWI-C is not derivable from AWS. Not workload- or region-attributed; not Azure/GCP-equivalent service factor."
+}

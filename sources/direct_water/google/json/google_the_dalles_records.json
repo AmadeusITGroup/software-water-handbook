@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.1.0",
+  "extraction_id": "google-the-dalles-records",
+  "extracted_at": "2026-07-17T00:00:00Z",
+  "extractor": {
+    "name": "SWI resources maintainers",
+    "organization": "Amadeus (SWI working-group contribution)",
+    "method": "human_reviewed_automated"
+  },
+  "report": {
+    "report_id": "google_the_dalles_records",
+    "report_title": "Data center water use can be a 'black box.' Google aims to change that (Latitude Media)",
+    "report_edition": "2025",
+    "report_year": 2025,
+    "publication_year": 2025,
+    "reporting_entity": "Google (Alphabet Inc.)",
+    "source_document_type": "other",
+    "reporting_period": {
+      "period_type": "date_range",
+      "period_label": "2012-2025",
+      "start_date": "2012-01-01",
+      "end_date": "2025-12-31"
+    },
+    "source_url": "https://www.latitudemedia.com/news/data-center-water-use-black-box-google-trying-to-change/",
+    "local_archive_path": "www.latitudemedia.com_news_data-center-water-use-black-box-google-trying-to-change.html",
+    "accessed_at": "2026-07-17",
+    "language": "en"
+  },
+  "definitions": {
+    "metric_definitions": [
+      {
+        "metric_definition_id": "md-site-water-use",
+        "metric_name": "Site water use (public records)",
+        "metric_family": "water_volume",
+        "quantity_kind": "total",
+        "definition_text": "Annual water use at Google's The Dalles data centres, disclosed via public records after litigation.",
+        "water_accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational"
+      },
+      {
+        "metric_definition_id": "md-site-water-share",
+        "metric_name": "Share of city water use",
+        "metric_family": "water_share",
+        "quantity_kind": "percentage",
+        "definition_text": "Google's share of the city of The Dalles' total water use.",
+        "water_accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational"
+      }
+    ],
+    "scope_definitions": [
+      {
+        "scope_definition_id": "sc-dalles",
+        "scope_name": "Google The Dalles, Oregon data centres",
+        "organizational_boundary": "facility",
+        "aggregation_level": "site",
+        "facility_types_included": [
+          "data_centre"
+        ],
+        "ownership_coverage": [
+          "owned",
+          "operationally_controlled"
+        ],
+        "product_attribution": "not_attributed",
+        "coverage_completeness": "partial",
+        "inclusions": [
+          "Litigation-disclosed municipal records"
+        ]
+      }
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "obs-dalles-water-use-2025-records",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-site-water-use",
+      "scope_definition_id": "sc-dalles",
+      "period": {
+        "period_type": "point_in_time",
+        "period_label": "2025 (grew 2012-2025)",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "site",
+        "geography_name": "The Dalles, Oregon",
+        "country_code": "US"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "total",
+        "value": 550,
+        "value_qualifier": "approximate",
+        "reported_unit": "million US gal",
+        "normalized_value": 2081976481.2,
+        "normalized_unit": "L",
+        "conversion_factor": 3785411.784,
+        "conversion_source": "1 million US gal = 3.785411784e6 L"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "direct_operational",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Municipal public records disclosed after an OregonLive lawsuit against the city of The Dalles."
+      },
+      "evidence": {
+        "evidence_text": "Google's water use ... in The Dalles ... grew ... to about 550 million gallons, or nearly 40% of the city's total water use.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "secondary_source_only"
+      },
+      "quality": {
+        "source_authority": "secondary",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Secondary source; litigation-disclosed municipal records",
+          "~550 million US gal is a municipal water-use (withdrawal-type) basis; compare Google's own 2025 The Dalles report values: withdrawal 654.3, discharge 185.3, consumption 469.0 million US gal"
+        ]
+      }
+    },
+    {
+      "observation_id": "obs-dalles-city-share",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-site-water-share",
+      "scope_definition_id": "sc-dalles",
+      "period": {
+        "period_type": "point_in_time",
+        "period_label": "2025",
+        "start_date": "2025-01-01",
+        "end_date": "2025-12-31"
+      },
+      "geography": {
+        "geographic_resolution": "city",
+        "geography_name": "The Dalles, Oregon",
+        "country_code": "US"
+      },
+      "value": {
+        "value_status": "reported",
+        "statistic_type": "share",
+        "value": 40.0,
+        "value_qualifier": "approximate",
+        "reported_unit": "%"
+      },
+      "water_boundary": {
+        "accounting_flow": "provider_reported_water_use",
+        "water_layer": "context_only",
+        "freshwater_status": "unknown",
+        "end_uses": [
+          "cooling"
+        ]
+      },
+      "measurement": {
+        "method_types": [
+          "engineering_estimate",
+          "mixed"
+        ],
+        "method_description": "Share of the city's total water use, from public records."
+      },
+      "evidence": {
+        "evidence_text": "... or nearly 40% of the city's total water use.",
+        "citation": {
+          "section": "Water"
+        },
+        "review_status": "secondary_source_only"
+      },
+      "quality": {
+        "source_authority": "secondary",
+        "assurance": {
+          "status": "not_reviewed"
+        },
+        "validation_flags": [],
+        "caveats": [
+          "Secondary source"
+        ]
+      }
+    }
+  ],
+  "relationships": [],
+  "extraction_notes": "Secondary source (Latitude Media) reporting litigation-disclosed municipal water records for Google's The Dalles data centres (~550 million US gal, ~40% of city water). This is a municipal water-use (withdrawal-type) basis; Google's own 2026 report gives The Dalles 2025 withdrawal 654.3, discharge 185.3, consumption 469.0 million US gal. All retained with their sources."
+}

@@ -1,0 +1,35 @@
+# --- Copyrighted source documents (referenced by link, never redistributed) ---
+*.pdf
+*.docx
+*.zip
+# Archived web-page snapshots of third-party sites
+*.html
+
+# --- Large or bulk datasets (link to official source instead) ---
+*.gpkg
+*.xlsx
+*.parquet
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+
+# --- Bulk / raw intermediate outputs ---
+# Curated CSVs under <company>/csv/ and cross_provider/ are committed intentionally
+# (they are derived by cross_provider/derive_parameters.py). Ignore raw/large exports.
+**/raw_*
+*.parquet
+
+# --- Local extraction config (points to private PDF directory) ---
+**/extraction/config.local.json

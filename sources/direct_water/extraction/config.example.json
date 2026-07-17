@@ -1,0 +1,4 @@
+{
+  "_comment": "Copy this file to config.local.json and set pdf_root to the local directory that holds the source PDFs. config.local.json is gitignored; source PDFs are never committed to this repository.",
+  "pdf_root": "/absolute/path/to/your/direct_water_D_sources"
+}
