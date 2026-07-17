@@ -25,11 +25,11 @@ WUE = litres of water used for cooling / kWh of IT energy.
 
 | Reporting scope | What they report | Resolution | Link |
 |-----------------|------------------|------------|------|
-| Google data centres | 2024 withdrawal, discharge, and consumption by data-centre location; not a generic GCP WUE | Site-level | https://sustainability.google/reports/google-2025-environmental-report/ |
+| Google data centres | Withdrawal, discharge, and consumption by data-centre location (per-site 2025; fleet 2021–2025); Gemini per-prompt water; not a generic GCP WUE | Site-level | https://sustainability.google/reports/google-2026-environmental-report/ |
 | Microsoft data-centre fleet | WUE by region: Global 0.27, Americas 0.34, APAC 0.25, EMEA 0.03 L/kWh (FY25); Azure approximation only | Broad Microsoft region | https://datacenters.microsoft.com/sustainability/efficiency/ |
 | AWS | Fleet WUE: 0.15 L/kWh (2024), 0.12 L/kWh (2025) | Global fleet | https://www.aboutamazon.com/news/sustainability/amazon-data-center-water-usage |
 | Equinix | Portfolio withdrawal, discharge, consumption, WUE; customer-attributed water reports | Fleet + customer-level | https://www.equinix.com/resources/infopapers/customer-water-reports |
-| Meta | 3,881 ML data-centre withdrawal; WUE 0.18 L/kWh | Global fleet | https://www.datacenterdynamics.com/en/news/meta-data-center-electricity-consumption-hits-14975gwh-leased-data-center-use-nearly-doubles/ |
+| Meta | 3,881 ML data-centre withdrawal; WUE 0.18 L/kWh | Global fleet | https://sustainability.atmeta.com/wp-content/uploads/2024/08/Meta-2024-Sustainability-Report.pdf |
 | Apple | Total withdrawal + discharge annually | Corporate total | https://www.apple.com/environment/pdf/Apple_Environmental_Progress_Report_2025.pdf |
 | NVIDIA | Total withdrawal, discharge, consumption annually | Corporate total | https://images.nvidia.com/aem-dam/Solutions/documents/NVIDIA-Sustainability-Report-Fiscal-Year-2025.pdf |
 | Salesforce | Total withdrawal only | Corporate total | https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/white-papers/salesforce-fy25-stakeholder-impact-report.pdf |
