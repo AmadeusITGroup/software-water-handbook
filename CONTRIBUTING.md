@@ -51,9 +51,30 @@ Provider sustainability reports typically publish annually (Q1–Q2). When new W
 2. Update `sources/dataset_index.md`
 3. Note the report year in your PR description
 
+## Licensing of contributions (inbound = outbound)
+
+By submitting a contribution, you agree it is provided under the **same licenses
+as the project**: **MIT** for code and **CC-BY-4.0** for data and documentation
+(see [LICENSE.md](LICENSE.md)). Do not submit material you cannot license this way.
+
+## Developer Certificate of Origin (DCO)
+
+All contributions require a **DCO sign-off**, certifying you have the right to
+submit the work under the project licenses (see <https://developercertificate.org/>).
+Add a sign-off line to every commit:
+
+```bash
+git commit -s -m "Your message"
+```
+
+This appends `Signed-off-by: Your Name <your@email>` to the commit. Configure your
+identity once with `git config user.name` and `git config user.email`. The DCO is
+how Green Software Foundation / Linux Foundation projects manage contribution
+provenance, so adopting it now keeps the project ready for donation.
+
 ## Neutrality
 
-This repository follows the methodology choices of the [SWI specification](https://greensoftware.foundation/standards/swi/) (AWARE as primary impact model, Aqueduct as diagnostic context). It does not advocate for alternative frameworks but documents their differences objectively.
+This repository documents the methodology choices of the [SWI specification](https://greensoftware.foundation/standards/swi/) and the differences between impact frameworks objectively. It stays **framework-neutral**: the direct-water layer is in physical litres, and impact-weighting (AWARE, Aqueduct, or others) is deferred to the impact layer rather than prescribed.
 
 Where conflicts exist between frameworks, we document both positions with references. See [conflicts_and_limitations.md](methodology/conflicts_and_limitations.md).
 

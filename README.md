@@ -106,8 +106,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-Pending Amadeus open-source approval. See [LICENSE.md](LICENSE.md) for the
-recommended dual-license approach (CC-BY-4.0 for content, Apache-2.0 for code).
+Recommended dual license (permissive): **MIT** for code and **CC-BY-4.0** for
+data and documentation, with contributions under a Developer Certificate of Origin
+(DCO) sign-off. Chosen to support open contribution and a planned donation to the
+Green Software Foundation. Pending Amadeus open-source and GSF onboarding sign-off
+— see [LICENSE.md](LICENSE.md).
 
 ## Maintainer
 
