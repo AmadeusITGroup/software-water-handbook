@@ -168,3 +168,7 @@ Results from AWARE (L-eq) and Aqueduct (0–5 score) cannot be directly compared
 - WRI Aqueduct 4.0 data download: https://www.wri.org/data/aqueduct-global-maps-40-data
 - WRI Aqueduct indicator definitions: https://www.wri.org/aqueduct/help-center/water-risk-indicators
 - Müller Schmied, H., et al. (2024). The global water resources and use model WaterGAP v2.2e. *Geoscientific Model Development*, 17(23), 8817–8852. https://doi.org/10.5194/gmd-17-8817-2024
+
+## Further reading
+
+- [Why AI's Water Footprint Is Harder to Measure Than Carbon](https://caohongliu.medium.com/why-ais-water-footprint-is-harder-to-measure-than-carbon-096fc76536ad) — a plain-language companion article on the measurement, attribution, and framework-comparability challenges documented above.

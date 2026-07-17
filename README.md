@@ -90,6 +90,10 @@ See [LICENSE.md](LICENSE.md) for licensing details.
 - [Aqueduct 4.0 (World Resources Institute)](https://www.wri.org/aqueduct)
 - [Cloud Carbon Footprint](https://www.cloudcarbonfootprint.org/) — the carbon equivalent; no water counterpart exists yet
 
+## Background reading
+
+- [Why AI's Water Footprint Is Harder to Measure Than Carbon](https://caohongliu.medium.com/why-ais-water-footprint-is-harder-to-measure-than-carbon-096fc76536ad) — companion article by the maintainer, on the measurement and comparability challenges this repository addresses.
+
 ## Future directions
 
 - Machine-readable dataset schema (YAML) for programmatic access
