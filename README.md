@@ -26,7 +26,6 @@ software-water-impact-resources/
 ├── CONTRIBUTING.md                     # How to contribute
 ├── LICENSE                             # MIT (code)
 ├── LICENSE-data.md                     # CC-BY-4.0 (data & documentation)
-├── LICENSE.md                          # Dual-license summary
 ├── .gitignore                          # Excludes copyrighted PDFs, bulk data
 ├── docs/
 │   └── 01_framework_overview.md        # 4-layer architecture + SWI formula
@@ -83,7 +82,7 @@ under `sources/**/csv/` and `sources/**/cross_provider/` contain **factual value
 reproductions of copyrighted text. Each extracted value retains a link and
 citation to its primary source so it can be independently verified.
 
-See [LICENSE.md](LICENSE.md) for licensing details.
+See [LICENSE](LICENSE) (code) and [LICENSE-data.md](LICENSE-data.md) (data & documentation) for details.
 
 ## Related resources
 
@@ -108,10 +107,14 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-Dual license (permissive): **MIT** for code ([`LICENSE`](LICENSE)) and
-**CC-BY-4.0** for data and documentation ([`LICENSE-data.md`](LICENSE-data.md)).
-Contributions are under a Developer Certificate of Origin (DCO) sign-off
-(inbound = outbound). See [LICENSE.md](LICENSE.md) for details.
+Permissive dual license:
+
+- **Code** (Python scripts, `schema.json`, `datapackage.json`) → **MIT** — [`LICENSE`](LICENSE)
+- **Data & documentation** (`**/*.md`, `sources/**/json/*.json`, `sources/**/csv/*.csv`) → **CC-BY-4.0** — [`LICENSE-data.md`](LICENSE-data.md)
+
+Both are attribution-only (no copyleft). Contributions are accepted under the same
+licenses (inbound = outbound) with a Developer Certificate of Origin (DCO)
+sign-off — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Maintainer
 

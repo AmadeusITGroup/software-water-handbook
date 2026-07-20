@@ -55,7 +55,7 @@ Provider sustainability reports typically publish annually (Q1–Q2). When new W
 
 By submitting a contribution, you agree it is provided under the **same licenses
 as the project**: **MIT** for code and **CC-BY-4.0** for data and documentation
-(see [LICENSE.md](LICENSE.md)). Do not submit material you cannot license this way.
+(see [LICENSE](LICENSE) and [LICENSE-data.md](LICENSE-data.md)). Do not submit material you cannot license this way.
 
 ## Developer Certificate of Origin (DCO)
 
