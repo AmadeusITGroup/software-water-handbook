@@ -1,0 +1,24 @@
+name: Validate extractions
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r sources/direct_water/extraction/requirements.txt
+      - name: Validate extractions against schema
+        working-directory: sources/direct_water/extraction
+        run: python validate_extractions.py
+      - name: Check derived CSVs are in sync with JSON
+        run: |
+          python sources/direct_water/cross_provider/derive_parameters.py
+          git diff --exit-code || { echo "::error::Derived CSVs are stale — run derive_parameters.py and commit the result."; exit 1; }

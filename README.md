@@ -1,5 +1,7 @@
 # Software Water Impact Resources
 
+[![Validate extractions](https://github.com/AmadeusITGroup/software-water-handbook/actions/workflows/validate.yml/badge.svg)](https://github.com/AmadeusITGroup/software-water-handbook/actions/workflows/validate.yml)
+
 A curated collection of datasets, models, and references for measuring the water impact of software systems and data centers.
 
 ## What this is
