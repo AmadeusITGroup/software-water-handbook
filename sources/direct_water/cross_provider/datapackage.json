@@ -4,7 +4,7 @@
   "description": "Computation-ready parameter tables derived from the JSON extractions under each <company>/json/. Tables are themed by metric family. This is the canonical data dictionary: the combined cross_provider/*_all_providers.csv tables and the per-company <company>/csv/*.csv tables share these field schemas. Every row carries units, the consumption/withdrawal flag, a caveat, and a source_report_id back-reference to the authoritative JSON. Derived artifacts only — never hand-edit; regenerate with derive_parameters.py.",
   "profile": "tabular-data-package",
   "licenses": [
-    {"name": "CC-BY-4.0", "title": "Creative Commons Attribution 4.0 (pending Amadeus approval)"}
+    {"name": "CC-BY-4.0", "title": "Creative Commons Attribution 4.0 International", "path": "https://creativecommons.org/licenses/by/4.0/"}
   ],
   "sources": [
     {"title": "JSON extractions (source of truth)", "path": "../"}

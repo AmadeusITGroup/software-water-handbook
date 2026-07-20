@@ -24,7 +24,9 @@ No equivalent open resource currently exists that consolidates these sources int
 software-water-impact-resources/
 ├── README.md                           # This file
 ├── CONTRIBUTING.md                     # How to contribute
-├── LICENSE.md                          # Licensing (pending Amadeus approval)
+├── LICENSE                             # MIT (code)
+├── LICENSE-data.md                     # CC-BY-4.0 (data & documentation)
+├── LICENSE.md                          # Dual-license summary
 ├── .gitignore                          # Excludes copyrighted PDFs, bulk data
 ├── docs/
 │   └── 01_framework_overview.md        # 4-layer architecture + SWI formula
@@ -106,11 +108,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-Recommended dual license (permissive): **MIT** for code and **CC-BY-4.0** for
-data and documentation, with contributions under a Developer Certificate of Origin
-(DCO) sign-off. Chosen to support open contribution and a planned donation to the
-Green Software Foundation. Pending Amadeus open-source and GSF onboarding sign-off
-— see [LICENSE.md](LICENSE.md).
+Dual license (permissive): **MIT** for code ([`LICENSE`](LICENSE)) and
+**CC-BY-4.0** for data and documentation ([`LICENSE-data.md`](LICENSE-data.md)).
+Contributions are under a Developer Certificate of Origin (DCO) sign-off
+(inbound = outbound). See [LICENSE.md](LICENSE.md) for details.
 
 ## Maintainer
 
