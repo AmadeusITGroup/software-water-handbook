@@ -1,0 +1,37 @@
+name: New data source or methodology proposal
+description: Propose a sourced dataset, model, study, or methodology improvement.
+title: "[Proposal]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options:
+        - Direct operational water
+        - Indirect electricity-generation water
+        - Embodied water
+        - Impact models
+        - Cross-cutting methodology
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Primary source URL
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Explain what should be added or changed and why it is useful.
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Limitations and licensing
+      description: Describe geography, time period, uncertainty, access restrictions, and reuse terms.
+    validations:
+      required: true

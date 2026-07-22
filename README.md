@@ -105,7 +105,14 @@ See [LICENSE](LICENSE) (code) and [LICENSE-data.md](LICENSE-data.md) (data & doc
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. The project's proposed
+decision-making and transfer requirements are documented in
+[docs/GOVERNANCE.md](docs/GOVERNANCE.md). Contributions are also subject to the
+[Code of Conduct](CODE_OF_CONDUCT.md) and [Security Policy](SECURITY.md).
+
+This repository is currently maintained under Amadeus stewardship. It is
+designed to be compatible with a future community or Green Software Foundation
+hosting arrangement, but it is not an official GSF deliverable yet.
 
 ## License
 

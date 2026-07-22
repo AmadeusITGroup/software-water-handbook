@@ -1,0 +1,26 @@
+name: Data or documentation issue
+description: Report an incorrect value, broken link, or unclear explanation.
+title: "[Issue]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is incorrect, missing, or unclear?
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Repository location
+      description: Path, section, or URL where the issue appears.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Provide the authoritative source, citation, or reproducible example.
+    validations:
+      required: true
