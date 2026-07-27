@@ -1,7 +1,7 @@
 {
   "name": "direct-water-swi-parameters",
   "title": "Direct-Water SWI Parameter Tables (cross-provider)",
-  "description": "Computation-ready parameter tables derived from the JSON extractions under each <company>/json/. Tables are themed by metric family. This is the canonical data dictionary: the combined cross_provider/*_all_providers.csv tables and the per-company <company>/csv/*.csv tables share these field schemas. Every row carries units, the consumption/withdrawal flag, a caveat, and a source_report_id back-reference to the authoritative JSON. Derived artifacts only — never hand-edit; regenerate with derive_parameters.py.",
+  "description": "Computation-ready parameter tables derived from the JSON extractions under each <company>/json/. Tables are themed by metric family. This is the canonical data dictionary: the combined cross_provider/*_all_providers.csv tables and the per-company <company>/csv/*.csv tables share these field schemas. Every row carries units, the consumption/withdrawal flag, a caveat, and both source_report_id and report_year back-references to the authoritative JSON. The combined and per-company tables are de-duplicated latest-per-key: rows describing the same fact across report editions are collapsed to the most recent report_year, and superseded values are logged in restatements.csv. Derived artifacts only — never hand-edit; regenerate with derive_parameters.py.",
   "profile": "tabular-data-package",
   "licenses": [
     {"name": "CC-BY-4.0", "title": "Creative Commons Attribution 4.0 International", "path": "https://creativecommons.org/licenses/by/4.0/"}
@@ -29,7 +29,8 @@
           {"name": "denominator", "type": "string", "description": "Energy denominator (typically IT-equipment energy)."},
           {"name": "caveat", "type": "string", "description": "Applicability caveat from the source extraction."},
           {"name": "source_report_id", "type": "string", "description": "Back-reference to <company>/json/<source_report_id>.json."},
-          {"name": "source_url", "type": "string", "format": "uri", "description": "Official primary-source URL."}
+          {"name": "source_url", "type": "string", "format": "uri", "description": "Official primary-source URL."},
+          {"name": "report_year", "type": "integer", "description": "Publication year of the source report edition. Combined tables keep the latest report_year per fact (see derive_parameters.py and README)."}
         ],
         "primaryKey": ["provider", "service_applicability", "region", "period", "water_flow"]
       }
@@ -55,7 +56,8 @@
           {"name": "water_flow", "type": "string"},
           {"name": "caveat", "type": "string"},
           {"name": "source_report_id", "type": "string"},
-          {"name": "source_url", "type": "string", "format": "uri"}
+          {"name": "source_url", "type": "string", "format": "uri"},
+          {"name": "report_year", "type": "integer", "description": "Publication year of the source report edition."}
         ]
       }
     },
@@ -81,7 +83,8 @@
           {"name": "value_qualifier", "type": "string"},
           {"name": "caveat", "type": "string"},
           {"name": "source_report_id", "type": "string"},
-          {"name": "source_url", "type": "string", "format": "uri"}
+          {"name": "source_url", "type": "string", "format": "uri"},
+          {"name": "report_year", "type": "integer", "description": "Publication year of the source report edition."}
         ]
       }
     },
@@ -104,7 +107,8 @@
           {"name": "value_qualifier", "type": "string"},
           {"name": "caveat", "type": "string"},
           {"name": "source_report_id", "type": "string"},
-          {"name": "source_url", "type": "string", "format": "uri"}
+          {"name": "source_url", "type": "string", "format": "uri"},
+          {"name": "report_year", "type": "integer", "description": "Publication year of the source report edition."}
         ]
       }
     },
@@ -130,7 +134,31 @@
           {"name": "value_qualifier", "type": "string"},
           {"name": "caveat", "type": "string"},
           {"name": "source_report_id", "type": "string"},
-          {"name": "source_url", "type": "string", "format": "uri"}
+          {"name": "source_url", "type": "string", "format": "uri"},
+          {"name": "report_year", "type": "integer", "description": "Publication year of the source report edition."}
+        ]
+      }
+    },
+    {
+      "name": "restatements",
+      "path": "restatements.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Log of facts reported with a DIFFERENT value across report editions. The themed tables keep the value from the most recent edition; this records the superseded value(s) for transparency. Not a parameter table — do not use for calculation.",
+      "schema": {
+        "fields": [
+          {"name": "theme", "type": "string", "description": "Which themed table the fact belongs to (wue, volumes, shares, progress, per_unit)."},
+          {"name": "provider", "type": "string"},
+          {"name": "period", "type": "string", "description": "Reporting period of the fact (same across editions)."},
+          {"name": "identity", "type": "string", "description": "Human-readable identity of the fact (location/region/scope)."},
+          {"name": "water_flow", "type": "string"},
+          {"name": "superseded_value", "type": "number", "description": "Older reported value, dropped from the themed tables."},
+          {"name": "superseded_report", "type": "string", "description": "report_id of the older edition."},
+          {"name": "superseded_year", "type": "integer", "description": "Publication year of the older edition."},
+          {"name": "kept_value", "type": "number", "description": "Value retained in the themed tables (latest edition)."},
+          {"name": "kept_report", "type": "string", "description": "report_id of the retained edition."},
+          {"name": "kept_year", "type": "integer", "description": "Publication year of the retained edition."}
         ]
       }
     }

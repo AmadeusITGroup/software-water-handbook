@@ -128,8 +128,16 @@ python ../cross_provider/derive_parameters.py
 ```
 
 This regenerates `<company>/csv/<theme>.csv` (wue, water_volumes, water_shares,
-replenishment_and_progress) and the combined `cross_provider/*_all_providers.csv`.
-Never hand-edit derived CSVs.
+replenishment_and_progress) and the combined `cross_provider/*_all_providers.csv`,
+and writes `cross_provider/restatements.csv`. Never hand-edit derived CSVs.
+
+The tables are de-duplicated **latest-per-key**: when you add a **new edition of an
+existing report** (a later `publication_year`), facts it shares with the older edition
+collapse to the new value automatically, and any changed values are logged in
+`restatements.csv`. So when extracting a newer edition, keep the older edition's JSON in
+place (it stays the historical record) — do not delete it; the derivation handles the
+overlap. Each derived row carries `report_year` + `source_report_id` to make the edition
+explicit.
 
 ## Step 9 — Write the company docs
 

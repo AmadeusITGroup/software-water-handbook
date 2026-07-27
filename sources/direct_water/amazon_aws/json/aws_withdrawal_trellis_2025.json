@@ -214,7 +214,7 @@
         },
         "validation_flags": [],
         "caveats": [
-          "Secondary source; Trellis refers to it as water consumption, AWS elsewhere frames withdrawal"
+          "Secondary source; withdrawal classification follows AWS's primary WUE definition"
         ]
       }
     },

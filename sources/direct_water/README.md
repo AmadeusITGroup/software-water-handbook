@@ -53,11 +53,17 @@ direct_water/
 │   ├── worked_example.md           # end-to-end calculation with that provider's data
 │   ├── json/                       # schema-conformant extractions (SOURCE OF TRUTH)
 │   └── csv/                        # WUE etc. derived from json/
-└── cross_provider/                 # combined tables across providers
-    ├── wue_all_providers.csv
-    ├── datapackage.json            # canonical data dictionary (shared by all WUE tables)
+└── cross_provider/                 # combined tables across providers (latest-per-key deduped)
+    ├── <theme>_all_providers.csv   # combined parameter tables (wue, volumes, shares, ...)
+    ├── restatements.csv            # values changed across report editions (superseded vs kept)
+    ├── datapackage.json            # canonical data dictionary (shared by all tables)
     └── derive_parameters.py        # regenerates per-company + combined tables
 ```
+
+Combined and per-company tables are de-duplicated **latest-per-key**: facts repeated
+across report editions collapse to the most recent edition's value, and superseded
+values are logged in `cross_provider/restatements.csv`. See
+[`cross_provider/README.md`](cross_provider/README.md) for the rule.
 
 ## Extraction
 

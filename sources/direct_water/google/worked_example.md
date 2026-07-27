@@ -58,7 +58,10 @@ is not derivable *from this route* — but it **is** derivable from the volume
 tables (Scenario C).
 
 Caveats: median text prompt only (not images/video/long context); Gemini Apps
-specifically, not generic GCP; May 2025 methodology.
+specifically, not generic GCP; May 2025 methodology. Also a **single global median**
+(a blended fleet-average, energy per prompt × Google's 2024 average fleetwide WUE),
+so it is **not per-location** and cannot be combined with the per-location volume
+tables in Scenario C.
 
 ## Scenario B — Can the corporate totals be allocated to a workload?
 
