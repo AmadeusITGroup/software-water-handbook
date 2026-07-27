@@ -138,11 +138,13 @@ Implications:
 series** (Google 2020–2025, Microsoft FY20–FY25) for **single-provider trends**, since
 AWS is 2025-only and the two Google editions overlap.
 
-### Google reporting evolution (2025 → 2026 edition)
+### Reporting evolution across editions — Google as a worked example
 
-Google is the only provider with two distinct annual editions extracted (2025 report =
-2024 data; 2026 report = 2025 data), so it is the only one where reporting *evolution*
-can be observed. Comparing the two editions (structure is additive — nothing was dropped):
+When more than one annual edition is extracted for a provider, you can track how its
+reporting *evolves* year over year. Google is used here as an example because two of its
+editions are currently extracted (2025 report = 2024 data; 2026 report = 2025 data); the
+same comparison applies to any provider once multiple editions are available. Comparing
+the two Google editions (structure is additive — nothing was dropped):
 
 - **New AI metric.** The 2026 edition adds a **per-prompt water figure** for Gemini
   (median 0.26 mL/prompt) — absent from the 2025 edition. First workload-level AI water
