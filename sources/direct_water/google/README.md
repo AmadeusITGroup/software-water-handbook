@@ -23,6 +23,11 @@ secondary sources.
 - **Not GCP-attributed.** Data-centre figures serve multiple Google products; the
   totals are corporate (data centres + offices), not a GCP or workload factor.
   The Gemini per-prompt figure is a specific Google service, not generic GCP.
+- **The Gemini 0.26 mL/prompt is a single global median, not per-location.** It is
+  a blended fleet-average (energy per prompt × Google's 2024 average fleetwide WUE),
+  covers **Gemini Apps text prompts only** (not images/video), and **cannot be
+  localised to a watershed or combined with the per-location volume table** — the two
+  have different bases (a service median vs site totals).
 - **Two The Dalles figures differ by basis** — 469 million US gal (Google's 2025
   *consumption*; withdrawal 654.3, discharge 185.3) vs ~550 million US gal
   (municipal public records, a *withdrawal* basis); both retained with their sources.

@@ -63,14 +63,17 @@ Compute:
 D = workload_IT_kWh x wue_l_per_kwh        # litres
 ```
 
-## Step 4 — (Out of scope here) Stress-adjust the result
+## Beyond this guide: stress-weighting happens in Layer 4
 
-This guide stops at **physical litres** (`D`). Converting `D` into a
-scarcity-weighted *impact* requires an impact framework, and **this repository
-does not prescribe one** — candidates include AWARE, WRI Aqueduct, and others,
-which are not interchangeable. That choice and its data live in the
-**impact layer** (`sources/impact_models/`); see `sources/methodology/` for how
-the frameworks differ and conflict.
+This guide covers **Layer 1** and stops at **physical litres** (`D`) — that is the
+whole scope of the direct-water volume calculation. Converting `D` into a
+scarcity-weighted *impact* is a **separate layer of this repository — Layer 4,
+[`impact_models`](../impact_models/)** — not a step of this Layer-1 guide.
+
+Layer 4 stays **framework-neutral**: it curates and compares the candidate impact
+frameworks — AWARE, WRI Aqueduct, and others, which are **not interchangeable** — and
+links to their datasets, rather than prescribing a single one. See
+[`methodology/`](../../methodology/) for how the frameworks differ and conflict.
 
 Two cautions carry over regardless of framework:
 - **Flow must match the framework.** Some frameworks (e.g. AWARE) are defined for

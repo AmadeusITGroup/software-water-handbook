@@ -34,7 +34,7 @@ that they agree on the six dimensions below. The `water_flow`, `caveat`,
 | Metric family | Amazon (AWS) | Google | Microsoft | Directly comparable? |
 |---------------|:---:|:---:|:---:|---|
 | **WUE (L/kWh)** | ✅ 0.12–0.25 | ❌ none published | ✅ 0.03–0.38 | **No** — different water flow and energy denominator (see below) |
-| **Per-unit (per prompt)** | ❌ | ✅ 0.26 mL/prompt (Gemini) | ❌ | **No** — only Google; a product-specific figure, not generic cloud |
+| **Per-unit (per prompt)** | ❌ | ✅ 0.26 mL/prompt (Gemini) | ❌ | **No** — only Google; a single **global median** (blended fleet-average), Gemini text prompts only, not per-location and not generic cloud |
 | **Volumes: withdrawal** | ✅ (fleet only) | ✅ (global + per site) | ✅ (global + regional) | Only at matching resolution + year |
 | **Volumes: consumption** | ❌ not reported | ✅ | ✅ | AWS cannot be compared here at all |
 | **Volumes: discharge** | ❌ not reported | ✅ | ✅ | AWS cannot be compared here at all |
@@ -73,7 +73,9 @@ that they agree on the six dimensions below. The `water_flow`, `caveat`,
 3. **Scope / product.** None of these is a cloud-service factor. Google's totals
    are **corporate (data centres + offices), not GCP**; Microsoft's are
    **owned-datacentre fleet, not Azure**; AWS is a **global data-centre fleet
-   average**. The Gemini per-prompt figure is one Google product, not generic GCP.
+   average**. The Gemini per-prompt figure is one Google product, not generic GCP —
+   and it is a **single global median** (blended fleet-average WUE, Gemini text prompts
+   only), so it cannot be localised or combined with Google's per-location volume table.
 4. **Geographic resolution.** Google gives **per-site** and global; Microsoft gives
    **broad region** (Americas/APAC/EMEA) and some site-level (Section 2, unassured)
    and global; AWS gives **global fleet only**. Compare site-to-site or global-to-

@@ -90,7 +90,8 @@ back-reference. Never use a value without checking those.
 
 ## The Allocation Problem
 
-Site-level water ÷ workload share = software-attributed water. Three methods exist:
+Site-level water × workload share = software-attributed water, where the workload
+share is a fraction (e.g. workload IT-energy ÷ total site IT-energy). Three methods exist:
 
 ### Method 1: Provider-attributed water
 The provider directly reports water allocated to a customer deployment.
