@@ -25,9 +25,9 @@ WUE = litres of water used for cooling / kWh of IT energy.
 
 | Reporting scope | What they report | Resolution | Link |
 |-----------------|------------------|------------|------|
-| Google data centres | Withdrawal, discharge, and consumption by data-centre location (per-site 2025; fleet 2021–2025); Gemini per-prompt water; not a generic GCP WUE | Site-level | https://sustainability.google/reports/google-2026-environmental-report/ |
-| Microsoft data-centre fleet | WUE by region: Global 0.27, Americas 0.34, APAC 0.25, EMEA 0.03 L/kWh (FY25); Azure approximation only | Broad Microsoft region | https://datacenters.microsoft.com/sustainability/efficiency/ |
-| AWS | Fleet WUE: 0.15 L/kWh (2024), 0.12 L/kWh (2025) | Global fleet | https://www.aboutamazon.com/news/sustainability/amazon-data-center-water-usage |
+| Google | Withdrawal, discharge, and consumption at global aggregate (2021–2025), data-centre / office split, and **per data-centre location** (~40 sites); Gemini Apps per-prompt water (median 0.26 mL/prompt, global fleet-blended, text prompts only); freshwater-at-risk shares (Google's own Data Center Water Risk Framework). **No headline per-kWh WUE published.** Not a GCP-service factor. | Global + per site | https://sustainability.google/reports/google-2026-environmental-report/ |
+| Microsoft | Withdrawal, discharge, consumption at **global + region + 29 datacentre sites** (withdrawal only at site level) with FY20–FY25 history and by-source breakdown; WUE reported **global FY25 = 0.27** in the 2026 report and **by broad region** (Americas 0.34, APAC 0.25, EMEA 0.03 L/kWh FY25) on the datacenter efficiency page; water-stress shares via WRI Aqueduct (current baseline). Owned datacentres and corporate operations; not Azure-specific. | Global + regional + site (WUE regional only) | https://datacenters.microsoft.com/sustainability/efficiency/ |
+| AWS | Global fleet **withdrawal-based WUE** 2021–2025: 0.25 → 0.19 → 0.18 → 0.15 → 0.12 L/kWh; 2025 data-centre withdrawal ≈ 9.4 billion L; water-stress shares via WRI Aqueduct (2030 business-as-usual scenario). **Withdrawal only** — no consumption or discharge reported. | Global fleet only | https://www.aboutamazon.com/news/sustainability/amazon-data-center-water-usage |
 | Equinix | Portfolio withdrawal, discharge, consumption, WUE; customer-attributed water reports | Fleet + customer-level | https://www.equinix.com/resources/infopapers/customer-water-reports |
 | Meta | 3,881 ML data-centre withdrawal; WUE 0.18 L/kWh | Global fleet | https://sustainability.atmeta.com/wp-content/uploads/2024/08/Meta-2024-Sustainability-Report.pdf |
 | Apple | Total withdrawal + discharge annually | Corporate total | https://www.apple.com/environment/pdf/Apple_Environmental_Progress_Report_2025.pdf |
@@ -106,22 +106,48 @@ The provider directly reports water allocated to a customer deployment.
 
 ### Method 2: WUE × workload energy
 ```
-D_C = workload_IT_kWh × WUE (L/kWh)
+D = workload_IT_kWh × WUE (L/kWh)
 ```
 - Requires knowing workload energy (estimated via Cloud Carbon Footprint or provider tools)
 - WUE is often a fleet average, not site-specific
-- Estimates consumption, not withdrawal
+- **The flow of `D` matches the flow of the WUE's numerator.** AWS WUE is
+  **withdrawal-based** so its `D` feeds `SWI-W`; Microsoft's WUE is "cooling +
+  humidification water use," neither pure withdrawal nor pure consumption, so its `D`
+  is a provider-reported water-use figure and does not cleanly map to either metric.
+  Never assume a WUE gives you consumption without checking `water_flow`.
 
 ### Method 3: Site water × workload share
 ```
-D_C = site_D_C × (workload_IT_kWh / total_site_IT_kWh)
+D = site_water × (workload_IT_kWh / total_site_IT_kWh)
 ```
-- Conceptually strongest
+- Conceptually strongest; the flow of `D` matches the flow of `site_water`, so this
+  method can bound both `SWI-C` and `SWI-W` when the site publishes both (e.g. Google
+  reports both per site; Microsoft only withdrawal per site; AWS none)
 - Rarely feasible: total site IT kWh is not publicly disclosed
 
 ### Key limitation
 
 Most public provider data supports **site-year validation** (does the total look reasonable?) but not **software-level attribution** (how much water is my workload responsible for?). The workload energy denominator is the primary practical barrier.
+
+## Impact frameworks in provider reports
+
+Providers name water-risk frameworks in their reports, but they use them for **risk
+screening** (categorising a site as low / medium / high stress), **not** to compute a
+scarcity-weighted water-impact number. None of AWS, Microsoft, or Google publishes a
+scarcity-weighted "L-equivalent" — the way carbon reports produce a CO2-equivalent.
+
+- **AWS** — WRI Aqueduct, 2030 business-as-usual scenario (withdrawal share).
+- **Microsoft** — WRI Aqueduct, current baseline water stress (share of withdrawal / discharge / consumption).
+- **Google** — its own **Data Center Water Risk Framework** for data centres; WRI Aqueduct + WWF only for offices.
+
+That is a genuinely different framework in the Google case, and different scenarios /
+bases in the AWS vs Microsoft cases, so the published stress shares are **not directly
+comparable across providers**. Converting litres to a scarcity-weighted impact is the
+job of the **impact layer** ([`sources/impact_models/`](../impact_models/)) — AWARE for
+consumption, and no clean equivalent for withdrawal — and that choice does not depend
+on which framework the provider itself cites. See
+[`cross_provider/README.md`](cross_provider/README.md) for the full comparability
+matrix and the framework caveats.
 
 ## References
 
