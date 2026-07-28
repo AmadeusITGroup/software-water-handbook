@@ -116,7 +116,7 @@ for illustration. The extractions actually span several years, and the coverage 
 | Metric family | Amazon (AWS) | Google | Microsoft |
 |---------------|--------------|--------|-----------|
 | Volumes | 2025 only | **2020–2025** | **FY20–FY25** |
-| WUE | 2021, 2024, 2025 | none | FY24–FY25 |
+| WUE | 2021–2025 | none | FY24–FY25 |
 | At-risk / stress share | 2025 | 2024–2025 | FY25 |
 
 Implications:

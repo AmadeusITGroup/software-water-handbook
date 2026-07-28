@@ -140,6 +140,48 @@
   },
   "observations": [
     {
+      "observation_id": "obs-aws-wue-2021",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {"period_type": "calendar_year", "period_label": "2021", "start_date": "2021-01-01", "end_date": "2021-12-31"},
+      "geography": {"geographic_resolution": "global", "geography_name": "AWS global fleet"},
+      "value": {"value_status": "reported", "statistic_type": "total", "value": 0.25, "value_qualifier": "exact", "reported_unit": "L/kWh", "normalized_value": 0.25, "normalized_unit": "L/kWh"},
+      "denominator": {"denominator_quantity": "it_load_energy", "denominator_unit": "kWh", "denominator_scope": "AWS data-centre IT load"},
+      "water_boundary": {"accounting_flow": "withdrawal", "water_layer": "direct_operational", "freshwater_status": "unknown", "end_uses": ["cooling"]},
+      "measurement": {"method_types": ["metered", "engineering_estimate", "mixed"], "method_description": "Fleet-average withdrawal-based WUE (litres withdrawn per kWh of IT load)."},
+      "evidence": {"evidence_text": "Water Use Effectiveness in Amazon data centers (L/kWh): 2021 = 0.25.", "citation": {"section": "Water Use Effectiveness in Amazon Data Centers"}, "review_status": "primary_source_validated"},
+      "quality": {"source_authority": "primary_official", "assurance": {"status": "not_reviewed"}, "validation_flags": [], "caveats": ["Fleet average; not regional or workload-attributed", "Baseline year"]}
+    },
+    {
+      "observation_id": "obs-aws-wue-2022",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {"period_type": "calendar_year", "period_label": "2022", "start_date": "2022-01-01", "end_date": "2022-12-31"},
+      "geography": {"geographic_resolution": "global", "geography_name": "AWS global fleet"},
+      "value": {"value_status": "reported", "statistic_type": "total", "value": 0.19, "value_qualifier": "exact", "reported_unit": "L/kWh", "normalized_value": 0.19, "normalized_unit": "L/kWh"},
+      "denominator": {"denominator_quantity": "it_load_energy", "denominator_unit": "kWh", "denominator_scope": "AWS data-centre IT load"},
+      "water_boundary": {"accounting_flow": "withdrawal", "water_layer": "direct_operational", "freshwater_status": "unknown", "end_uses": ["cooling"]},
+      "measurement": {"method_types": ["metered", "engineering_estimate", "mixed"], "method_description": "Fleet-average withdrawal-based WUE (litres withdrawn per kWh of IT load)."},
+      "evidence": {"evidence_text": "Water Use Effectiveness in Amazon data centers (L/kWh): 2022 = 0.19.", "citation": {"section": "Water Use Effectiveness in Amazon Data Centers"}, "review_status": "primary_source_validated"},
+      "quality": {"source_authority": "primary_official", "assurance": {"status": "not_reviewed"}, "validation_flags": [], "caveats": ["Fleet average; not regional or workload-attributed"]}
+    },
+    {
+      "observation_id": "obs-aws-wue-2023",
+      "record_role": "reported_observation",
+      "metric_definition_id": "md-aws-wue",
+      "scope_definition_id": "sc-aws-fleet",
+      "period": {"period_type": "calendar_year", "period_label": "2023", "start_date": "2023-01-01", "end_date": "2023-12-31"},
+      "geography": {"geographic_resolution": "global", "geography_name": "AWS global fleet"},
+      "value": {"value_status": "reported", "statistic_type": "total", "value": 0.18, "value_qualifier": "exact", "reported_unit": "L/kWh", "normalized_value": 0.18, "normalized_unit": "L/kWh"},
+      "denominator": {"denominator_quantity": "it_load_energy", "denominator_unit": "kWh", "denominator_scope": "AWS data-centre IT load"},
+      "water_boundary": {"accounting_flow": "withdrawal", "water_layer": "direct_operational", "freshwater_status": "unknown", "end_uses": ["cooling"]},
+      "measurement": {"method_types": ["metered", "engineering_estimate", "mixed"], "method_description": "Fleet-average withdrawal-based WUE (litres withdrawn per kWh of IT load)."},
+      "evidence": {"evidence_text": "Water Use Effectiveness in Amazon data centers (L/kWh): 2023 = 0.18.", "citation": {"section": "Water Use Effectiveness in Amazon Data Centers"}, "review_status": "primary_source_validated"},
+      "quality": {"source_authority": "primary_official", "assurance": {"status": "not_reviewed"}, "validation_flags": [], "caveats": ["Fleet average; not regional or workload-attributed"]}
+    },
+    {
       "observation_id": "obs-aws-wue-2024",
       "record_role": "reported_observation",
       "metric_definition_id": "md-aws-wue",

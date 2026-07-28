@@ -58,8 +58,8 @@ D_W = 50,000 kWh x 0.12 L/kWh = 6,000 L        -> feeds SWI-W
 ```
 
 Trend for context (all withdrawal-based, global fleet, from `csv/wue.csv`):
-0.25 L/kWh (2021) → 0.15 (2024) → 0.12 (2025). AWS cites an **industry average of
-0.84 L/kWh** as a benchmark (not AWS's own value).
+0.25 (2021) → 0.19 (2022) → 0.18 (2023) → 0.15 (2024) → 0.12 (2025) L/kWh. AWS cites an
+**industry average of 0.84 L/kWh** as a benchmark (not AWS's own value).
 
 ## Scenario B — Can the fleet withdrawal total be allocated?
 
